@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Kalória Kalkulátor</title>
+
+ 
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card card-body text-center mt-5">
+            <h1 class="heading display-5 pb-3">Kalória Kalkulátor</h1>
+            <form id="calorie-form">
+
+              <div class="form-group row">
+                <label for="age" class="col-sm-2 col-form-label">Életkor</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="age" >
+                </div>
+              </div>
+
+              
+                <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0">Nem</legend>
+                  <div class="col-sm-10" id="form-radio">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="male" name="customRadioInline1" class="custom-control-input" checked="checked">
+                      <label class="custom-control-label" for="male">Férfi</label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="female" name="customRadioInline1" class="custom-control-input">
+                      <label class="custom-control-label" for="female">Nő</label>
+                    </div>  
+
+                  </div>
+                </div> 
+
+            
+
+              <div class="form-group row">
+                <label for="weight" class="col-sm-2 col-form-label">Súly</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="weight" max="100" >
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="height" class="col-sm-2 col-form-label">Magasság</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="height" >
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <legend class="col-form-label col-sm-2 pt-0">Aktivitás</legend>
+                <select class="custom-select col-sm-10" id="activ">
+                  <option selected value="1">Semennyit nem mozgok (ülőmunkát végzek) </option>
+                  <option value="2">Minimális mozgást végzek</option>
+                  <option value="3">Heti 1-2 alkalommal sportolok</option>
+                  <option value="4">Heti 3-4 alkalommal sportolok</option>
+                  <option value="5">Heti 5-6 alkalommal rendszeresen sportolok)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <input id="SumBtn" type="submit" value="Számít" class="btn btn-dark btn-block">
+              </div>
+
+            </form>
+
+            
+            <div id="results" class="pt-4">
+              <h5>Összes kalóriabevitel (kcal)</h5>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="number" class="form-control" id="total-calories" disabled>
+                </div>
+              </div>                       
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="app.js"></script>
+  </body>
+</html>
