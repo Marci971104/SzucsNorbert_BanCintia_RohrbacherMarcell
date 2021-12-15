@@ -17,7 +17,7 @@ var totalCalories = document.getElementById('total-calories');
  
   
   
-  if (age.value === '' || weight.value === '' || height.value === '' || 150 < age.value || age.value < 0) {
+  if (200< weight.value || height.value === '' || 200 < age.value || age.value < 0) {
    
   } else if(gender.id === 'male' && activity === "1") {
     totalCalories.value =Math.round( 1.2 * (66.5 + (13.75 * parseFloat(weight.value)) + (5.003 * parseFloat(height.value)) - (6.755 * parseFloat(age.value))));

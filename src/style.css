@@ -1,7 +1,43 @@
 body{
-    background-color: darkgray;
+    background-repeat: no-repeat;
+    
+    /*background-attachment: fixed;*/
+    background-size: 1920px 1024px;
+    background-image:url('https://ejournalz.com/wp-content/uploads/2018/04/Healthy-Lifestyle-Tips.jpg');
+    font-family: 'Courier New', Courier, monospace;
+    font-size: smaller;
+
 }
 div{
+
+    
+    font-size:small;
     
 padding: auto;
+
 }
+
+#Ablak{
+    
+    text-align: left;
+    background-color: aqua;
+    
+}
+h1 {
+  
+    color:black;
+
+}
+#activ{
+    text-align: left;
+    
+   
+ 
+}
+.custom-select{
+ 
+}
+
+
+
+
