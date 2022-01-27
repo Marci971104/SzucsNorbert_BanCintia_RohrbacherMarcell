@@ -1,0 +1,38 @@
+body{
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+    background-size: 1920px 1024px;
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    
+
+}
+
+div{
+    opacity: 0.95;
+    padding-top: 1;
+    font-size:12px;    
+    padding: auto;
+    flex: auto;
+
+
+}
+
+
+h1 {
+  
+    color:black;
+
+}
+#activ{
+    text-align: left;
+    font-size: large;
+    
+   
+ 
+}
+
+
+
+
+
