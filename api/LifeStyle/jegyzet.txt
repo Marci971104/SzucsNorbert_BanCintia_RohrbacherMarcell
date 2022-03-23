@@ -1,0 +1,6 @@
+
+laravel frontend public mappába bele kell tenni a css-t és a master linkjébe beletenni (ugyan úgy mint a bootstrapet)
+
+
+register.blade 
+át lehet írni az egyészet magyarra 
