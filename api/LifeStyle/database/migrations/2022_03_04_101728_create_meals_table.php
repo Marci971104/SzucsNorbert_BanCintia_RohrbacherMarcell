@@ -21,8 +21,7 @@ return new class extends Migration
             $table->double("protein");
             $table->double("carbonhydrate");
             $table->double("salt");
-            //$table->double("price", 7, 2);  //--> 7= karakter hossz, 2= tizedesjegyek száma
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 
