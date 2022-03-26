@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MealController;
 use App\Http\Controllers\API\DataController;
+use App\Http\Controllers\API\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,4 +39,11 @@ Route::group( ["middleware" => ["auth:sanctum"]], function(){
     //Route::get( "/search-data/{dataid}", [DataController::class, "search" ]);
     Route::put("/update-data/{Datas}",[DataController::class,"update"]);
     Route::delete("/delete-data/{dataid}",[DataController::class,"destroy"]);
+
+    Route::post("/store-user",[UserController::class,"storeUser"]);
+    Route::get("/show-user/{id}",[UserController::class,"show"]);
+    Route::get("/show-all-user",[UserController::class,"showAll"]);
+    Route::get( "/search-user/{id}", [UserController::class, "search" ]);
+    //Route::put("/update-user/{Users}",[UserController::class,"update"]);
+    Route::delete("/delete-user/{id}",[UserController::class,"destroy"]);
 });
