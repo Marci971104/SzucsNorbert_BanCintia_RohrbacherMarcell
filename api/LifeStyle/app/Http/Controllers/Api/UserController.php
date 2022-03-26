@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Models\User;
 use App\Http\Controllers\API\Users;
@@ -85,9 +86,37 @@ class UserController extends BaseController
     // }
 
 
-    public function destroy($id){
-        User::destroy($id);
-        return $this->sendResponse([],"Felhasználó törölve");
+    // public function destroy($id){
+    //     User::destroy($id);
+    //     return $this->sendResponse([],"Felhasználó törölve");
+    // }
+
+    public function destroy($id = null){
+        $user = auth("sanctum")->user();
+        if(is_null($id)){
+            $account = auth("sanctum")->user();
+        }else{
+            $account = User::find($id);
+        }
+        if(is_null($account)){
+            return $this->sendError("Nincs ilyen felhasználó");
+        }elseif($account->id == $user->id || $user->admin){
+            if($account->admin){
+                return $this->sendError("Az admin nem törölhető");
+            }
+
+            DB::table('personal_access_tokens')
+                ->where('tokenable_id', '=', $account->id)
+                ->delete();
+            try {
+                User::destroy($account->id);
+                return $this->sendResponse([], "A felhasználó törölve");
+            } catch (\Throwable $e) {
+                return $this->sendError("Hiba a felhasználó törlése során", $e);
+            }
+        }else{
+            return $this->sendError("Ez a fiók nem az öné ezért nem törölheti");
+        }
     }
 
 

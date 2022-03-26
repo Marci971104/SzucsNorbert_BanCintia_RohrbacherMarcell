@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('data', function (Blueprint $table) {
-            $table->id("id");
+            $table->increments("id")->nullOnDelete();
             $table->integer("height");
             $table->integer("weight");
             $table->integer("age");
