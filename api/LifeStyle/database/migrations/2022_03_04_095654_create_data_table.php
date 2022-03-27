@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer("height");
             $table->integer("weight");
             $table->integer("age");
-            $table->boolean("gender");
+            $table->string("gender");
             $table->integer("allcalories");
             $table->integer("waterintake");
 
@@ -31,7 +31,7 @@ return new class extends Migration
             'height'=>180,
             'weight'=>75,
             'age'=>24,    
-            'gender'=>1,  
+            'gender'=>"férfi",  
             'allcalories'=>0,
             "waterintake"=>0,
             'created_at'=>'2022-03-20 13:40:17',
@@ -44,7 +44,7 @@ return new class extends Migration
             'height'=>170,
             'weight'=>65,
             'age'=>19,    
-            'gender'=>2,  
+            'gender'=>"nő",  
             'allcalories'=>0,
             "waterintake"=>0,
             'created_at'=>'2022-03-20 13:40:17',
