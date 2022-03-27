@@ -20,10 +20,36 @@ return new class extends Migration
             $table->integer("age");
             $table->boolean("gender");
             $table->integer("allcalories");
-            $table->boolean("waterintake");
+            $table->integer("waterintake");
 
             $table->timestamps();
         });
+
+
+        DB::table('data')->insert(array(
+            'id'=>'1',
+            'height'=>180,
+            'weight'=>75,
+            'age'=>24,    
+            'gender'=>1,  
+            'allcalories'=>0,
+            "waterintake"=>0,
+            'created_at'=>'2022-03-20 13:40:17',
+            'updated_at'=>'2022-03-20 13:40:17'
+        ));
+
+        
+        DB::table('data')->insert(array(
+            'id'=>'2',
+            'height'=>170,
+            'weight'=>65,
+            'age'=>19,    
+            'gender'=>2,  
+            'allcalories'=>0,
+            "waterintake"=>0,
+            'created_at'=>'2022-03-20 13:40:17',
+            'updated_at'=>'2022-03-20 13:40:17'
+        ));
     }
 
     /**

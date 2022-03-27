@@ -130,5 +130,20 @@ class UserController extends BaseController
             return response()->json(['Result' => 'Nincs talalat'], 404);
         }
     }
+
+    public function searchuser($username){
+        if(auth( "sanctum" )->user()->admin){
+            $users = DB::table('users')
+                ->select('name', 'email', 'data_id', 'id')
+                ->where('name', 'like', '%'.$name.'%')
+                ->get();
+            if(is_null($users)){
+                return $this->sendError("Nincs találat a keresésre");
+            }
+            return $this->sendResponse($users, "Keresési találatok betöltve");
+        }else{
+            return $this->sendError("Nincsen jogosultsága ehhez a művelethez");
+        }
+    }
     
 }
