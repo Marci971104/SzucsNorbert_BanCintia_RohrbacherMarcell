@@ -40,10 +40,10 @@ Route::group( ["middleware" => ["auth:sanctum"]], function(){
     Route::put("/update-data/{Datas}",[DataController::class,"update"]);
     Route::delete("/delete-data/{dataid}",[DataController::class,"destroy"]);
 
-    Route::post("/store-user",[UserController::class,"storeUser"]);
+    //Route::post("/store-user",[UserController::class,"storeUser"]);
     Route::get("/show-user/{id}",[UserController::class,"show"]);
     Route::get("/show-all-user",[UserController::class,"showAll"]);
     Route::get( "/search-user/{id}", [UserController::class, "search" ]);
-    //Route::put("/update-user/{Users}",[UserController::class,"update"]);
+    Route::put("/update-user/{Users}",[UserController::class,"update"]);
     Route::delete("/delete-user/{id}",[UserController::class,"destroy"]);
 });

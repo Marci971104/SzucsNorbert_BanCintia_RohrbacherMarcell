@@ -20,7 +20,7 @@ class meals extends JsonResource
             "calorievalue"=>$this->calorievalue,
             "fat"=>$this->fat,
             "protein"=>$this->protein,
-            "carbonhydrate"=>$this->carbonhydrate,
+            "carbohydrate"=>$this->carbohydrate,
             "salt"=>$this->salt,
 
         ];

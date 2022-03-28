@@ -23,9 +23,6 @@ class DataController extends BaseController
             "weight" => "required",
             "age" => "required",
             "gender" => "required",
-
-
-
         ]);
 
         if($validator->fails()){

@@ -5,6 +5,9 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Models\User;
+use App\Models\Data;
+use App\Http\Controllers\API\Datas;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends BaseController
 {
@@ -17,7 +20,6 @@ class AuthController extends BaseController
             "email"=>"required",
             "password"=>"required",
             "confirm_password"=>"required|same:password",
-            'data_id'=>'required'
         ]);
         if($validator->fails())
         {
@@ -28,7 +30,8 @@ class AuthController extends BaseController
         $user = User::create($input);
         $success["token"] = $user->createToken("MyAuthApp")->plainTextToken;
         $success["name"]= $user->name;
-        return $this->sendResponse($success, "User created successfully");
+
+        return $this->sendResponse($success, "Felhasználó sikeresen létrehozva");
     }
 
     public function signin(Request $request){
@@ -46,6 +49,6 @@ class AuthController extends BaseController
     public function logout(Request $request)
     {
         auth("sanctum")->user()->currentAccessToken()->delete();
-        return response()->json('Signed out');
+        return response()->json('Kijelentkezve');
     }
 }

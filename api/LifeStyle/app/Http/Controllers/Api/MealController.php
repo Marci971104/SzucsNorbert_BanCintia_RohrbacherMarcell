@@ -23,7 +23,7 @@ class MealController extends BaseController
             "calorievalue" => "required",
             "fat" => "required",
             "protein" => "required",
-            "carbonhydrate" => "required",
+            "carbohydrate" => "required",
             "salt" => "required",
         ]);
 
@@ -56,7 +56,7 @@ class MealController extends BaseController
             "calorievalue" => "required",
             "fat" => "required",
             "protein" => "required",
-            "carbonhydrate" => "required",
+            "carbohydrate" => "required",
             "salt" => "required",
         ]);
 
@@ -68,7 +68,7 @@ class MealController extends BaseController
         $meals -> calorievalue = $input["calorievalue"];
         $meals -> fat = $input["fat"];
         $meals -> protein = $input["protein"];
-        $meals -> carbonhydrate = $input["carbonhydrate"];
+        $meals -> carbohydrate = $input["carbohydrate"];
         $meals -> salt = $input["salt"];
 
 
