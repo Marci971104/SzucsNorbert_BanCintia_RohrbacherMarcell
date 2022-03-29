@@ -1,0 +1,21 @@
+.inputs{
+    padding: 50px;
+    font-size: large;
+    color: black;
+    text-align: center;
+}
+.full{
+    background-color: #EEE5DB;
+
+}
+#login{
+    background-color: #DDCBB9;
+    color: black;
+}
+html{
+    background-color: blue;
+}
+.spinner-border{
+    margin-top: 15px;
+    
+}
