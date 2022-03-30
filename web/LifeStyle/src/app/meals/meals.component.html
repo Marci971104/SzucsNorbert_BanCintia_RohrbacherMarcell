@@ -1,0 +1,66 @@
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+rel="stylesheet"
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+crossorigin="anonymous"
+/>
+
+
+
+
+<div class="main">
+  <div class="list">
+    <table class="table table-dark table-borderless">
+      <thead>
+        <tr>
+          <th >Név</th>
+          <th >Kalória érték</th>
+          <th >Zsír</th>
+          <th >Fehérje</th>
+          <th >Szénhidrát</th>
+          <th >Só</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meals of meal">
+          <td>{{ meals.name }}</td>
+          <td>{{ meals.calorievalue }}</td>
+          <td>{{ meals.fat}}</td>
+          <td>{{ meals.protein }}</td>
+          <td>{{ meals.carbohydrate }}</td>
+          <td>{{ meals.salt }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+  </div>
+  <div class="register">
+  <form [formGroup]="registerForm">
+    <h5>Név</h5>
+    <input type="text" formControlName="name" />
+    <h5>Kalória érték</h5>
+    <input type="text" formControlName="calorievalue" />
+    <h5>Zsír</h5>
+    <input type="text" formControlName="fat" />
+    <h5>Fehérje</h5>
+    <input type="text" formControlName="protein" />
+    <h5>Szénhidrát</h5>
+    <input type="text" formControlName="carbohydrate" />
+    <h5>Só</h5>
+    <input type="text" formControlName="salt" />
+    <br />
+    <h5></h5>
+
+
+    <button (click)="addMeal()" id="button" class="btn btn-dark">Új hozzáadása</button>
+    <p id="valami">
+ 
+    </p>
+    <button (click)="logout()" id="logout" class="btn btn-dark">Kijelentkezés</button>
+  </form>
+
+</div>
+</div>

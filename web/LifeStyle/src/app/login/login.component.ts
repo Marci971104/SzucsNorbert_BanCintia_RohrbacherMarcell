@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           'currentUser',
           JSON.stringify({ token: res.token, name: res.name })
         );
-        this.router.navigate(['vehicle']);
+        this.router.navigate(['meals']);
       } else {
         alert('Hiba a belepes sikertelen');
       }
