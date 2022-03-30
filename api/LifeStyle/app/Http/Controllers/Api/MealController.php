@@ -12,6 +12,7 @@ use App\Http\Resources\meals as MealsResources;
 
 
 
+
 class MealController extends BaseController
 {
 
