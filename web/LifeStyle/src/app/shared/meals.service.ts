@@ -38,8 +38,9 @@ export class MealsService {
     let header = {
       headers: headerObj,
     };
-    let endpoint = 'meal';
+    let endpoint = 'meals';
     let url = this.host + endpoint;
     return this.http.post<any>(url, data, header);
   }
+
 }

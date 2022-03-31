@@ -6,7 +6,7 @@ import { MealsComponent } from './meals/meals.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  
+
   {path:'login',component:LoginComponent},
   {path:'meals',component:MealsComponent}
 
@@ -17,5 +17,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
-
-

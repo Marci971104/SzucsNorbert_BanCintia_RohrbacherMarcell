@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class MealsComponent implements OnInit {
   registerForm !: FormGroup;
   meal !: any;
+  toDisplay = false;
+
 
   constructor(
 
@@ -58,5 +60,9 @@ export class MealsComponent implements OnInit {
     this.meal = res;
     })
   }
- 
+
+  toggleData() {
+    this.toDisplay = !this.toDisplay;
+  }
+
 }
