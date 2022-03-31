@@ -48,13 +48,13 @@ class UserController extends BaseController
 
     public function showAll(){
         if(auth( "sanctum" )->user()->admin){
-            $user = DB::table('users')
-                ->select('id','name', 'email')
+            $users = DB::table('users')
+                ->select('id','name', 'email', 'data_id')
                 ->get();
-            if(is_null($user)){
+            if(is_null($users)){
                 return $this->sendError("Nincs a feltételnek megfelelő elem!");
             }
-            return $this->sendResponse(UserResources::collection($user), "Összes felhasználó");
+            return $this->sendResponse($users, "Összes felhasználó");
         }else{
             return $this->sendError("Ehhez a művelethez nincsen jogosultsága!");
         }
