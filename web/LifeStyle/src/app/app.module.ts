@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MealsComponent } from './meals/meals.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

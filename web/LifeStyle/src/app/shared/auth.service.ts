@@ -14,7 +14,7 @@ export class AuthService {
     console.log(pass);
 
     let authData = {
-      name: email,
+      email: email,
       password: pass,
     };
     let data = JSON.stringify(authData);
