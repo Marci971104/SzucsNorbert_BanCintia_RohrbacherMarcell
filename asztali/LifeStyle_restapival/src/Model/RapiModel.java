@@ -20,6 +20,12 @@ import java.util.Vector;
 
 public class RapiModel {
 	
+	private String DeleteMealMsg;
+	private String DeleteUserMsg;
+
+
+	
+	
 	
 private String Login() throws Exception{
         
@@ -83,7 +89,7 @@ private String Login() throws Exception{
     private Vector<Vector<Object>> Users(String token, String search_text, String method) throws Exception{
     
        URL url = new URL("http://localhost:8000/api/show-all-user/" + search_text);
-      // URL url = new URL("http://localhost:8000/api/show-all-users/" + search_text); 
+       //URL url = new URL("http://localhost:8000/api/show-all-users/" + search_text); 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         
         conn.setRequestProperty("Authorization", "Bearer " +token);
@@ -172,7 +178,7 @@ private String Login() throws Exception{
             
             Vector<Object> meal = new Vector<>();
 
-            
+            meal.add(mealmodel.id);
             meal.add(mealmodel.name);
             meal.add(mealmodel.calorievalue);
             meal.add(mealmodel.fat);
@@ -197,7 +203,7 @@ private String Login() throws Exception{
         return datas;
     }
     private Vector<Vector<Object>> Datas(String token, String search_text, String ad_method) throws Exception{
-        URL url = new URL("http://localhost:8000/api/show-all-data" + search_text);
+        URL url = new URL("http://localhost:8000/api/show-data/{dataid}/" + search_text);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         
         conn.setRequestProperty("Authorization", "Bearer " +token);
@@ -255,6 +261,88 @@ private String Login() throws Exception{
 	            ex.printStackTrace();
 	        }
 	    }
+	  
+	  public Boolean tryDeleteMeal(String token, String id) {
+	        boolean success = false;
+	        try {
+	            success = DeleteMeal(token, id);
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+	        return success;
+	    }
+	    private Boolean DeleteMeal(String token, String id) throws Exception{
+	        URL url = new URL("http://localhost:8000/api/delete-meal/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        
+	        conn.setRequestProperty("Authorization", "Bearer " +token);
+	        conn.setRequestMethod("DELETE");
+	        conn.setDoOutput(true);
+
+	        conn.connect();
+	        
+	        int responseCode = conn.getResponseCode();
+	        String text = "";
+	        boolean success = false;
+	        
+	        if(responseCode == 200) {
+	            success = true;
+	            text = new String(
+	                conn.getInputStream().readAllBytes(), 
+	                StandardCharsets.UTF_8);
+	        }else {
+	            throw new RuntimeException("Http válasz: " + responseCode);
+	        }
+	        
+	        JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
+	        
+	        String message_raw = jsonObject.get("message").toString();
+	        DeleteMealMsg = message_raw.substring(1, message_raw.length() - 1);
+	        
+	        return success;
+	    }
+	    
+	    public Boolean tryDeleteUser(String token, String id) {
+	        boolean success = false;
+	        try {
+	            success = DeleteUser(token, id);
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+	        return success;
+	    }
+	    private Boolean DeleteUser (String token, String id) throws Exception{
+	        URL url = new URL("http://localhost:8000/api/delete-user/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        
+	        conn.setRequestProperty("Authorization", "Bearer " +token);
+	        conn.setRequestMethod("DELETE");
+	        conn.setDoOutput(true);
+
+	        conn.connect();
+	        
+	        int responseCode = conn.getResponseCode();
+	        String text = "";
+	        boolean success = false;
+	        
+	        if(responseCode == 200) {
+	            success = true;
+	            text = new String(
+	                conn.getInputStream().readAllBytes(), 
+	                StandardCharsets.UTF_8);
+	        }else {
+	            throw new RuntimeException("Http válasz: " + responseCode);
+	        }
+	        
+	        JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
+	        
+	        String message_raw = jsonObject.get("message").toString();
+	        DeleteMealMsg = message_raw.substring(1, message_raw.length() - 1);
+	        
+	        return success;
+	    }
+	  
+	  
 	    private void Logout(String token) throws Exception{
 	    
 	        URL url = new URL("http://localhost:8000/api/logout");
@@ -277,5 +365,22 @@ private String Login() throws Exception{
 	        
 	        System.out.println(text);
 	    }
+	    
+	    public String getDeleteMealMsg() {
+	        return DeleteMealMsg;
+	    }
+	    public String getDeleteUserMsg() {
+	        return DeleteUserMsg;
+	    }
+		public void setDeleteMealMsg(String deleteMealMsg) {
+			DeleteMealMsg = deleteMealMsg;
+		}
+
+		public void setDeleteUserMsg(String deleteUserMsg) {
+			DeleteUserMsg = deleteUserMsg;
+		}
+
+		
+	    
 
 }

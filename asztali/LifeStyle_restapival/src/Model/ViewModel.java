@@ -25,6 +25,8 @@ public class ViewModel {
         
         Vector<String> columnNames = new Vector<>();
         
+        
+        columnNames.add( "Kaja azonosító" );
         columnNames.add( "Étel neve" );
         columnNames.add( "Kalória érték" );
         columnNames.add( "Zsír" );

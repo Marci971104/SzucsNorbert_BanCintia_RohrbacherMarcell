@@ -6,6 +6,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Dimension;
+import java.awt.SystemColor;
 
 /**
  *
@@ -53,6 +61,12 @@ public class LifeForm extends javax.swing.JFrame {
         statusLbl = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         exitBtn = new javax.swing.JButton();
+        exitBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        exitBtn.setVerticalAlignment(SwingConstants.BOTTOM);
+        exitBtn.setBackground(Color.GRAY);
         westPnl = new javax.swing.JPanel();
         centerPnl = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -61,6 +75,9 @@ public class LifeForm extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         tableTb = new javax.swing.JTabbedPane();
+        tableTb.setBackground(Color.WHITE);
+        tableTb.setForeground(new Color(255, 255, 255));
+        tableTb.setMaximumSize(new Dimension(500, 500));
         userTb = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTbl = new javax.swing.JTable();
@@ -203,15 +220,15 @@ public class LifeForm extends javax.swing.JFrame {
         southPnl.setLayout(new java.awt.GridLayout(1, 3));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 143, Short.MAX_VALUE)
+        	jPanel2Layout.createParallelGroup(Alignment.LEADING)
+        		.addGap(0, 256, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+        	jPanel2Layout.createParallelGroup(Alignment.LEADING)
+        		.addGap(0, 40, Short.MAX_VALUE)
         );
+        jPanel2.setLayout(jPanel2Layout);
 
         southPnl.add(jPanel2);
 
@@ -508,8 +525,4 @@ public class LifeForm extends javax.swing.JFrame {
     public void setStatusLbl( String text, String method ) {
         statusLbl.setText( text );
     }
-
-
-    
-    
 }

@@ -6,6 +6,7 @@ import Model.RapiModel;
 
 public class RapiController {
 
+	private String id;
     private RapiModel rapiMdl;
     private String token;
     private String search_text;
@@ -58,5 +59,39 @@ public class RapiController {
         this.search_text = search_text;
         this.method = method;
     }
+    
+    public void setSearchData(String search_text) {
+        this.search_text = search_text;
+    }
+    
+    
+    public Boolean DeleteMeal() {
+        boolean success = rapiMdl.tryDeleteMeal(token, id);
+        return success;
+    }
+    public String getDeleteMealMsg() {
+        String message = rapiMdl.getDeleteMealMsg();
+        return message;
+    }
+    
+    public Boolean DeleteUser() {
+        boolean success = rapiMdl.tryDeleteUser(token, id);
+        return success;
+    }
+    public String getDeleteUser() {
+        String message = rapiMdl.getDeleteUserMsg();
+        return message;
+    }
+    
+    
+    public String getDeleteUserMsg() {
+        String message = rapiMdl.getDeleteUserMsg();
+        return message;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+
 	
 }
