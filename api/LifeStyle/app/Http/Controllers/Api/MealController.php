@@ -134,7 +134,7 @@ class MealController extends BaseController
             $meal -> salt = $input["salt"];
             $meal -> save();
 
-            return $this->sendResponse(new MealsResource($meal), "Adatok módosítva");
+            return $this->sendResponse(new MealsResources($meal), "Adatok módosítva");
 
         } catch (\Throwable $ex) {
             return $this->sendError("Hiba a kiírás során", $ex);

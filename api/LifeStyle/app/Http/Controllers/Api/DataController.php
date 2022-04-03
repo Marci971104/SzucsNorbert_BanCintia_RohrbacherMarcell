@@ -107,7 +107,7 @@ class DataController extends BaseController
             $data -> waterintake= $input["waterintake"]; 
             $data -> save();
 
-            return $this->sendResponse(new DataResource($data), "Adatok módosítva");
+            return $this->sendResponse(new DataResources($data), "Adatok módosítva");
 
         } catch (\Throwable $ex) {
             return $this->sendError("Hiba a kiírás során", $ex);
