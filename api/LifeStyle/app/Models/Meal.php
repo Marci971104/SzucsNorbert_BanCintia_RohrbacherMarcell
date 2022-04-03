@@ -14,7 +14,7 @@ class Meal extends Model
         "calorievalue",
         "fat",
         "protein",
-        "carbonhydrate",
+        "carbohydrate",
         "salt",
     ];
 

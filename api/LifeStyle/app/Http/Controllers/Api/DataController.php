@@ -51,30 +51,67 @@ class DataController extends BaseController
         return $this->sendResponse(new DataResources($data),"Adatok betöltve");
     }
 
-    public function update(Request $request, Data $data){
-        $input = $request -> all();
-        $validator = validator::make($input,[
+    // public function update(Request $request, Data $data){
+    //     $input = $request -> all();
+    //     $validator = validator::make($input,[
+    //         "height" => "required",
+    //         "weight" => "required",
+    //         "age" => "required",
+    //         "gender" => "required",
+    //         "allcalories"=>"required",
+    //         "waterintake"=>"required"
+
+
+    //     ]);
+
+    //     if($validator->fails()){
+    //         return $this->sendError($validator->errors());
+    //     }
+        
+    //     $data -> height = $input["height"];
+    //     $data -> weight = $input["weight"];
+    //     $data -> age = $input["age"];
+    //     $data -> gender = $input["gender"];
+    //     $data -> allcalories= $input["allcalories"];
+    //     $data -> waterintake= $input["waterintake"];
+
+
+
+    //     $data -> save();
+
+    //     return $this->sendResponse(new DataResources($data),"Adatok sikeresen módosítva");
+    // }
+
+
+    public function update(Request $request, $id ) {
+        $data = Data::find($id);
+        if( is_null($data)){
+            return $this->sendError("Nincs ilyen adat");
+        }
+        $input = $request->all();
+        $validator = Validator::make($input, [
             "height" => "required",
             "weight" => "required",
             "age" => "required",
             "gender" => "required",
-
+            "allcalories"=>"required",
+            "waterintake"=>"required"
         ]);
 
-        if($validator->fails()){
-            return $this->sendError($validator->errors());
+        try {
+            $data -> height = $input["height"];
+            $data -> weight = $input["weight"];
+            $data -> age = $input["age"];
+            $data -> gender = $input["gender"];
+            $data -> allcalories= $input["allcalories"];
+            $data -> waterintake= $input["waterintake"]; 
+            $data -> save();
+
+            return $this->sendResponse(new DataResource($data), "Adatok módosítva");
+
+        } catch (\Throwable $ex) {
+            return $this->sendError("Hiba a kiírás során", $ex);
         }
-        
-        $data -> height = $input["height"];
-        $data -> weight = $input["weight"];
-        $data -> age = $input["age"];
-        $data -> gender = $input["gender"];
-
-
-
-        $data -> save();
-
-        return $this->sendResponse(new DataResources($data),"Adatok módosítva");
     }
 
 
