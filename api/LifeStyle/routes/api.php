@@ -30,7 +30,7 @@ Route::group( ["middleware" => ["auth:sanctum"]], function(){
     Route::get("/show-meal/{id}",[MealController::class,"show"]);
     Route::get( "/search-meal/{name}", [MealController::class, "search" ]);
     Route::get("/show-all-meal",[MealController::class,"showAll"]);
-    Route::put("/update-meal/{Meal}",[MealController::class,"update"]);
+    Route::put("/update-meal/{id}",[MealController::class,"update"]);
     Route::delete("/delete-meal/{id}",[MealController::class,"destroy"]);
 
 
