@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id()->nullOnDelete();
+            $table->id("id")->nullOnDelete();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('data_id')->unsigned()->nullOnDelete();
             $table->foreign('data_id')->references('id')->on('data');

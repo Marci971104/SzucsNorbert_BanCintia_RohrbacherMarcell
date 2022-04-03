@@ -75,7 +75,7 @@ class UserController extends BaseController
             }
             $input = $request->all();
             $validator = Validator::make($input, [
-                "user" => "required",
+                "name" => "required",
                 "email" => "required",
                 "password" => "required",
                 "confirm_password" => "required|same:password",
@@ -87,7 +87,7 @@ class UserController extends BaseController
             try {
                 $input[ "password" ] = bcrypt( $input[ "password" ]);
                 $account->update([
-                    "user" => $input['username'],
+                    "name" => $input['name'],
                     "email" => $input['email'],
                     "password" => $input['password'],
                 ]);

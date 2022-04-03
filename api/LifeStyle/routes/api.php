@@ -30,20 +30,20 @@ Route::group( ["middleware" => ["auth:sanctum"]], function(){
     Route::get("/show-meal/{name}",[MealController::class,"show"]);
     Route::get( "/search-meal/{name}", [MealController::class, "search" ]);
     Route::get("/show-all-meal",[MealController::class,"showAll"]);
-    Route::put("/update-meal/{meals}",[MealController::class,"update"]);
+    Route::put("/update-meal/{id}",[MealController::class,"update"]);
     Route::delete("/delete-meal/{id}",[MealController::class,"destroy"]);
 
 
     Route::post("/store-data",[DataController::class,"storeData"]);
     Route::get("/show-data/{dataid}",[DataController::class,"show"]);
     //Route::get( "/search-data/{dataid}", [DataController::class, "search" ]);
-    Route::put("/update-data/{Datas}",[DataController::class,"update"]);
+    Route::put("/update-data/{id}",[DataController::class,"update"]);
     Route::delete("/delete-data/{dataid}",[DataController::class,"destroy"]);
 
     //Route::post("/store-user",[UserController::class,"storeUser"]);
     Route::get("/show-user/{id}",[UserController::class,"show"]);
     Route::get("/show-all-user",[UserController::class,"showAll"]);
     Route::get( "/search-user/{id}", [UserController::class, "search" ]);
-    Route::put("/update-user/{Users}",[UserController::class,"update"]);
+    Route::put("/update-user/{id}",[UserController::class,"update"]);
     Route::delete("/delete-user/{id}",[UserController::class,"destroy"]);
 });
