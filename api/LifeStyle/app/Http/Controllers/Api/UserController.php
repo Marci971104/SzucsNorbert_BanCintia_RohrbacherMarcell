@@ -16,26 +16,26 @@ use App\Http\Resources\user as UserResources;
 class UserController extends BaseController
 {
 
-    public function storeUser(Request $request){
-        //dd($request);
-        $input = $request->all();
-        $validator = Validator::make($input,[
-            "name" => "required",
-            "email" => "required",
-            "password" => "required",
+    // public function storeUser(Request $request){
+    //     //dd($request);
+    //     $input = $request->all();
+    //     $validator = Validator::make($input,[
+    //         "name" => "required",
+    //         "email" => "required",
+    //         "password" => "required",
 
 
 
-        ]);
+    //     ]);
 
-        if($validator->fails()){
-            return $this->sendError($validator->errors());
-        }
+    //     if($validator->fails()){
+    //         return $this->sendError($validator->errors());
+    //     }
 
-        $user = User::create($input);
+    //     $user = User::create($input);
 
-        return $this->sendResponse(new UserResources($user),"Felhasználó kiírva");
-    }
+    //     return $this->sendResponse(new UserResources($user),"Felhasználó kiírva");
+    // }
 
     public function show($id){
         $user = User::find($id);
@@ -140,19 +140,4 @@ class UserController extends BaseController
         }
     }
 
-    public function searchuser($username){
-        if(auth( "sanctum" )->user()->admin){
-            $users = DB::table('users')
-                ->select('name', 'email', 'data_id', 'id')
-                ->where('name', 'like', '%'.$name.'%')
-                ->get();
-            if(is_null($users)){
-                return $this->sendError("Nincs találat a keresésre");
-            }
-            return $this->sendResponse($users, "Keresési találatok betöltve");
-        }else{
-            return $this->sendError("Nincsen jogosultsága ehhez a művelethez");
-        }
-    }
-    
 }
