@@ -1,52 +1,73 @@
 package control;
 
 
+import Model.ProfileModel;
 import Model.ViewModel;
 
 import view.LifeForm;
+import view.Profile;
+
 import java.util.Vector;
 
-import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class ViewController {
 
     private LifeForm lifeFrm;
+    private Profile proFrm;
     
 
     private ViewModel viewMdl;
+    private ProfileModel proMdl;
     private Vector<Vector<Object>> tableData;
     private RapiController rapiCtr;
-
-
 	private String id;
-    
-    public ViewController(RapiController rapiCtr) {
+
+  public ViewController(RapiController rapiCtr) {
         
         this.rapiCtr = rapiCtr;
         viewMdl = new ViewModel();
+        proMdl=new ProfileModel();
         initFrames();
         ActionListeners();
         
     }
-    private void ActionListeners() {
-    	lifeFrm.getSearchBtn().addActionListener( event -> { search(); } );
+   private void ActionListeners() {
+	   
     	lifeFrm.getExitBtn().addActionListener( event -> { exit(); });
     	lifeFrm.getTableTb().addChangeListener(event -> {initTables(); });
     	lifeFrm.getDeleteBtn().addActionListener(event -> {delete(); });
-        
 
-
+    	lifeFrm.getProfilBtn().addActionListener(event -> {initProfile();});
+    	proFrm.getExitBtn().addActionListener( event -> { test(); });
     }
     private void initFrames() {
-    	lifeFrm = new LifeForm();
-    	lifeFrm.setVisible(true);
-       initTables();
+    	initProfileFrame();
+        proFrm = new Profile();
+    	initLifeFrame();
+        proFrm = new Profile();
+        initTables();
     }
-
-   
-    private void initTables() {
+    
+    private void initLifeFrame() {
+        lifeFrm = new LifeForm();
+        lifeFrm.setTitle("LifeStyle");
+        lifeFrm.setLocationRelativeTo(null);
+        lifeFrm.setVisible(true);
+      
+    }
+    
+    private void initProfileFrame() {
+        proFrm = new Profile();
+        proFrm.setTitle("Profil");
+        proFrm.setLocationRelativeTo(null);
+        proFrm.setVisible(true);
+    }
+    
+ 
+ private void initTables() {
+    	  proFrm.dispose();
     
         Vector<String> columnNames = new Vector<>();
         tableData = new Vector<>();
@@ -63,68 +84,24 @@ public class ViewController {
             lifeFrm.getMealTbl().setModel(tableMdl);
     }   
 }
-        	
-        	
-        	
-        	
-  
-
-        
-       
-    
-   /*
-	private void initMeals() {
+	private void initProfile() {
     	Vector<String> columnNames = new Vector<>();
         tableData = new Vector<>();
         
-    	if(lifeFrm.getTableTb().getSelectedIndex() == 0) {
-            columnNames = viewMdl.getMealColumnNames();
-            tableData = rapiCtr.getMeal();
-            TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
-            lifeFrm.getMealTbl().setModel(tableMdl);
-    }else {
-            columnNames = viewMdl.getMealColumnNames();
-            tableData = rapiCtr.getMeal();
-            TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
-            lifeFrm.getMealTbl().setModel(tableMdl);
-    }     
-    }
-    
-    private void initDatas() {
-    	
-    	Vector<String> columnNames = new Vector<>();
-        tableData = new Vector<>();
-    
-    	if(lifeFrm.getTableTb().getSelectedIndex() == 0) {
-            columnNames = viewMdl.getDataColumnNames();
+    	if(proFrm.getTableTb().getSelectedIndex() == 0) {
+            columnNames = proMdl.getProfileColumnNames();
             tableData = rapiCtr.getData();
             TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
-            lifeFrm.getDataTbl().setModel(tableMdl);
+            proFrm.getDataTbl().setModel(tableMdl);
     }else {
-            columnNames = viewMdl.getDataColumnNames();
-            tableData = rapiCtr.getData();
-            TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
-            lifeFrm.getDataTbl().setModel(tableMdl);
-    }
-    }
-    
-*/
-
-
-    private void search() {
-        int openTab = lifeFrm.getTableTb().getSelectedIndex();
-        String search_text = lifeFrm.getSearchBtn().getText();
-        if(openTab == 0) {
-        	rapiCtr.setSearchData(search_text);
-        	initTables();
-        }else {
-        	rapiCtr.setSearchData(search_text);
-        	initTables();
-        }
-        
-        
-    }
-    
+    	columnNames = proMdl.getProfileColumnNames();
+        tableData = rapiCtr.getData();
+        TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
+        proFrm.getDataTbl().setModel(tableMdl);
+    }     	
+  }
+	
+	
     private void delete() {
         
         
@@ -133,8 +110,10 @@ public class ViewController {
             DeleteUser();
         }else {
             DeleteMeal();
+           
         }
-       
+        
+        proFrm.dispose();
     }
     
     private void DeleteMeal() {
@@ -158,13 +137,15 @@ public class ViewController {
         
         initTables();
     }
+
     
-    
-    private void exit() {
+  private void exit() {
         rapiCtr.Logout();
         System.exit(0);
     }
-    
-   
+  
+  private void test() {
+      proFrm.dispose();
+  }
 }
 

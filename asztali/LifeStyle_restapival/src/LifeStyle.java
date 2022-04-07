@@ -1,8 +1,6 @@
 
 import control.Controller;
 import view.LifeForm;
-import control.RapiController;
-import control.ViewController;
 
 
 
