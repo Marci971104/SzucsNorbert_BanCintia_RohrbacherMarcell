@@ -25,6 +25,7 @@ export class MealsComponent implements OnInit {
   ngOnInit(): void {
     this.getMeals();
     this.registerForm = this.formBuilder.group({
+      id:[''],
       name:[''],
       calorievalue: [''],
       fat:[''],
@@ -34,6 +35,7 @@ export class MealsComponent implements OnInit {
     });
   }
   addMeal() {
+    let id = this.registerForm.value.id;
     let name = this.registerForm.value.name;
     let calorievalue = this.registerForm.value.calorievalue;
     let fat = this.registerForm.value.fat;
@@ -41,7 +43,7 @@ export class MealsComponent implements OnInit {
     let carbohydrate = this.registerForm.value.carbohydrate;
     let salt = this.registerForm.value.salt;
 
-    this.meals.addMeal(name, calorievalue, fat, protein, carbohydrate, salt).subscribe((res) => {
+    this.meals.addMeal(id,name, calorievalue, fat, protein, carbohydrate, salt).subscribe((res) => {
       console.log(res);
 
       this.getMeals();

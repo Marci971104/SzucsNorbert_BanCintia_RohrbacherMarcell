@@ -11,6 +11,7 @@ import { AuthService } from '../shared/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
+  loading = false;
   constructor(
     private auth: AuthService,
     private formBuilder: FormBuilder,
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    
+
     let email = this.loginForm.value.email;
     let pass = this.loginForm.value.pass;
 
@@ -34,12 +35,21 @@ export class LoginComponent implements OnInit {
       if (res.token) {
         localStorage.setItem(
           'currentUser',
-          JSON.stringify({ token: res.token, name: res.name })
+          JSON.stringify({ token: res.token, email: res.email })
         );
-        this.router.navigate(['meal']);
+      //  this.router.navigate(['meals']);
       } else {
-        alert('Hiba a belepes sikertelen');
+        this.router.navigate(['home']);
+
       }
     });
+  }
+
+  userLogin() {
+    console.log('logging in');
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000)
   }
 }

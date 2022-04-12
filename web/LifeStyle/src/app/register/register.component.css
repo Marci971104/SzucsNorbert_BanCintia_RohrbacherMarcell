@@ -1,0 +1,15 @@
+#reg{
+    background-color: #EEE5DB;
+    margin-top: 20px;
+    border-radius: 25px;
+    width: 700px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+#btn{
+    background-color: #DDCBB9;
+    color: black;
+    margin-bottom: 20px;
+    display: flex;
+}

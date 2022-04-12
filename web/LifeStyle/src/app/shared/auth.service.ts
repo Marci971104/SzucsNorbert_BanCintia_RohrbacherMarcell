@@ -64,4 +64,21 @@ export class AuthService {
       this.router.navigate(['login']);
     });
   }
+
+  register(email: string, name: string, password: string, confirm_password: string) {
+
+    let authData;
+    let data = JSON.stringify(authData);
+    let headerObj = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    let header = {
+      headers: headerObj
+    }
+
+    let endpoint = 'register';
+    let url = this.host + endpoint;
+    return this.http.post<any>(url, data, header);
+  }
 }

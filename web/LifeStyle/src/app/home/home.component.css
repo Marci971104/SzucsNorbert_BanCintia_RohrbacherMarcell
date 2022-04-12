@@ -1,0 +1,16 @@
+#logout{
+    float: right;
+    background-color: #DDCBB9;
+    color: black;
+    margin-top: 10px;
+}
+#line{
+    background-color: #EEE5DB;
+    border-radius: 25px;
+}
+#font{
+    color: black;
+}
+.navbar-brand{
+    margin-left: 7px;
+}

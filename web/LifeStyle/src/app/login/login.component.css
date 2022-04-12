@@ -6,7 +6,7 @@
 }
 .full{
     background-color: #EEE5DB;
-
+    height: 450px;
 }
 #login{
     background-color: #DDCBB9;
@@ -14,5 +14,9 @@
 }
 .spinner-border{
     margin-top: 15px;
-    
+}
+#register{
+    background-color: #DDCBB9;
+    color: black;
+    margin-top: 10px;
 }

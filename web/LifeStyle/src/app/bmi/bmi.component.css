@@ -1,0 +1,16 @@
+.btn{
+    background-color: #DDCBB9;
+    color: black;
+}
+#bmi{
+    margin-top: 15px;
+}
+.container{
+    background-color: #EEE5DB;
+    border-radius: 25px;
+    margin-top: 20px;
+}
+h1{
+    text-align: center;
+    padding-top: 5px;
+}

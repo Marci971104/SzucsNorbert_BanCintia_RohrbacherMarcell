@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { identifierName } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,10 @@ export class MealsService {
     return this.http.get<any>(url);
 
   }
-  addMeal(name:string, calorievalue:number, fat:number, protein:number, carbohydrate:number, salt:number){
+  addMeal(id:number, name:string, calorievalue:number, fat:number, protein:number, carbohydrate:number, salt:number){
 
     let newData = {
+      id: id,
       name: name,
       calorievalue: calorievalue,
       fat: fat,
