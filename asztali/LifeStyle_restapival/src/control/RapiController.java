@@ -6,11 +6,12 @@ import Model.RapiModel;
 
 public class RapiController {
 
-	private String id;
 
     private RapiModel rapiMdl;
     private String token;
     private String method;
+	private String id;
+	private String dataid;
     
     public RapiController() {
         rapiMdl = new RapiModel();
@@ -37,7 +38,7 @@ public class RapiController {
     
     
     
-    public Vector<Vector<Object>> getData() {
+    public Vector<Vector<Object>> getDatas() {
         Vector<Vector<Object>> datas = new Vector<>();
         
         datas = rapiMdl.tryDatas(token, method);
@@ -45,14 +46,7 @@ public class RapiController {
         return datas;
     }
     
-    
-    
-    public void setData( String method) {
-        
-        
-        this.method = method;
-    }
-    
+   
     
     public Vector<Vector<Object>> getMeal() {
         Vector<Vector<Object>> meals = new Vector<>();
@@ -93,6 +87,15 @@ public class RapiController {
     
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public boolean UpdateUser(){
+        boolean success = rapiMdl.tryUpdateUser(token, id);
+        return success;
+    }
+    public boolean UpdateMeal(){
+        boolean success = rapiMdl.tryUpdateMeal(token, id);
+        return success;
     }
     
     

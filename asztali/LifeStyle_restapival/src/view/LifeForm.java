@@ -43,8 +43,6 @@ public class LifeForm extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         northPnl = new javax.swing.JPanel();
-        searchTf = new javax.swing.JTextField();
-        searchBtn = new javax.swing.JButton();
         eastPnl = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -102,13 +100,6 @@ public class LifeForm extends javax.swing.JFrame {
         northPnl.setPreferredSize(new java.awt.Dimension(769, 40));
         northPnl.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 12));
 
-        searchTf.setPreferredSize(new java.awt.Dimension(150, 30));
-        northPnl.add(searchTf);
-
-        searchBtn.setText("Keresés");
-        searchBtn.setPreferredSize(new java.awt.Dimension(85, 30));
-        northPnl.add(searchBtn);
-
         jPanel1.add(northPnl, java.awt.BorderLayout.NORTH);
 
         eastPnl.setPreferredSize(new java.awt.Dimension(150, 491));
@@ -126,25 +117,15 @@ public class LifeForm extends javax.swing.JFrame {
         );
 
         eastPnl.add(jPanel11);
-        editBtn = new javax.swing.JButton();
-        
-                editBtn.setText("Módosítás");
-                editBtn.setPreferredSize(new java.awt.Dimension(85, 30));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12Layout.setHorizontalGroup(
         	jPanel12Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jPanel12Layout.createSequentialGroup()
-        			.addGap(31)
-        			.addComponent(editBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(34, Short.MAX_VALUE))
+        		.addGap(0, 150, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
         	jPanel12Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jPanel12Layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(editBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(13, Short.MAX_VALUE))
+        		.addGap(0, 54, Short.MAX_VALUE)
         );
         jPanel12.setLayout(jPanel12Layout);
 
@@ -159,6 +140,11 @@ public class LifeForm extends javax.swing.JFrame {
         jPanel15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
         eastPnl.add(jPanel15);
+        updateBtn = new javax.swing.JButton();
+        jPanel15.add(updateBtn);
+        
+        updateBtn.setText("M\u00F3dos\u00EDt\u00E1s");
+        updateBtn.setPreferredSize(new java.awt.Dimension(85, 30));
         deleteBtn = new javax.swing.JButton();
         deleteBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -199,25 +185,15 @@ public class LifeForm extends javax.swing.JFrame {
         );
 
         eastPnl.add(jPanel17);
-        profilBtn = new javax.swing.JButton();
-        
-                profilBtn.setText("Profil");
-                profilBtn.setPreferredSize(new java.awt.Dimension(85, 30));
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18Layout.setHorizontalGroup(
-        	jPanel18Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-        			.addContainerGap(34, Short.MAX_VALUE)
-        			.addComponent(profilBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addGap(31))
+        	jPanel18Layout.createParallelGroup(Alignment.TRAILING)
+        		.addGap(0, 150, Short.MAX_VALUE)
         );
         jPanel18Layout.setVerticalGroup(
         	jPanel18Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jPanel18Layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(profilBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(13, Short.MAX_VALUE))
+        		.addGap(0, 54, Short.MAX_VALUE)
         );
         jPanel18.setLayout(jPanel18Layout);
 
@@ -443,7 +419,6 @@ public class LifeForm extends javax.swing.JFrame {
     private javax.swing.JPanel centerPnl;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JPanel eastPnl;
-    private javax.swing.JButton editBtn;
     private javax.swing.JButton exitBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -469,9 +444,7 @@ public class LifeForm extends javax.swing.JFrame {
     private javax.swing.JPanel userTb;
     private javax.swing.JTable userTbl;
     private javax.swing.JPanel northPnl;
-    private javax.swing.JButton profilBtn;
-    private javax.swing.JButton searchBtn;
-    private javax.swing.JTextField searchTf;
+    private javax.swing.JButton updateBtn;
     private javax.swing.JPanel southPnl;
     private javax.swing.JLabel statusLbl;
     private javax.swing.JTabbedPane tableTb;
@@ -480,7 +453,7 @@ public class LifeForm extends javax.swing.JFrame {
 
     public JButton getExitBtn(){ return exitBtn; }
     
-    public JButton getSearchBtn() { return searchBtn; }
+    
     public JTabbedPane getTableTb() { return tableTb ; }
 
     public JPanel getMealTb() {
@@ -503,13 +476,11 @@ public class LifeForm extends javax.swing.JFrame {
         return deleteBtn;
     }
 
-    public JButton getEditBtn() {
-        return editBtn;
+    public JButton getUpdateBtn() {
+        return updateBtn;
     }
 
-    public JButton getProfilBtn() {
-        return profilBtn;
-    }
+  
     
  
 
@@ -517,13 +488,7 @@ public class LifeForm extends javax.swing.JFrame {
         statusLbl.setText( text );
     }
 
-	public javax.swing.JTextField getSearchTf() {
-		return searchTf;
-	}
 
-	public void setSearchTf(javax.swing.JTextField searchTf) {
-		this.searchTf = searchTf;
-	}
 	
 	
 	

@@ -22,6 +22,7 @@ public class RapiModel {
 	
 	private String DeleteMealMsg;
 	private String DeleteUserMsg;
+	 private ResponseModel responseMdl;
 
 
 	
@@ -44,7 +45,7 @@ private String Login() throws Exception{
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "application/json");
         
-       // String data= "{\"email\":\"teszt@teszt.hu\",\"password\":\"teszt\"}";
+
         String data= "{\"email\":\"admin@email.hu\",\"password\":\"admin\"}";
         byte[] out = data.getBytes(StandardCharsets.UTF_8);
         
@@ -66,17 +67,12 @@ private String Login() throws Exception{
         
         String token_raw = tokenObject.get("token").toString();
         String token = token_raw.substring(1, token_raw.length() - 1);
-        return token;}
+        return token;
+        }
 
-    private ResponseModel responseMdl;
 
-    public RapiModel() {
-        responseMdl = new ResponseModel();
-    }
-    
+
  
-    
-  
 
     public Vector<Vector<Object>> tryUsers(String token ) {
         Vector<Vector<Object>> users = new Vector<>();
@@ -194,21 +190,23 @@ private String Login() throws Exception{
         
     }
     
-    public Vector<Vector<Object>> tryDatas(String token,  String ad_method) {
+    public Vector<Vector<Object>> tryDatas(String token,  String method) {
         Vector<Vector<Object>> datas = new Vector<>();
         try {
-            datas = Datas(token,  ad_method);
+            datas = Datas(token, method);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return datas;
     }
-    private Vector<Vector<Object>> Datas(String token, String ad_method) throws Exception{
-        URL url = new URL("http://localhost:8000/api/show-data/{dataid}/" );
+    
+	private Vector<Vector<Object>> Datas(String token,  String method) throws Exception{
+        
+        URL url = new URL("http://localhost:8000/api/show-all-data/" );
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         
         conn.setRequestProperty("Authorization", "Bearer " +token);
-        conn.setRequestMethod(ad_method);
+        conn.setRequestMethod(method);
         conn.setDoOutput(true);
 
         conn.connect();
@@ -229,29 +227,27 @@ private String Login() throws Exception{
 
         JsonArray arr = jsonObject.getAsJsonArray("data");
         
-        DataModel[] adArray = gson.fromJson(arr, DataModel[].class);
-        ArrayList<DataModel> lista = new ArrayList<>(Arrays.asList(adArray));
-
+        DataModel[] dataArray = gson.fromJson(arr, DataModel[].class);
+        ArrayList<DataModel> lista = new ArrayList<>(Arrays.asList(dataArray));
+        
         Vector<Vector<Object>> datas = new Vector<>();
         for(DataModel datamodel: lista) {
             
             Vector<Object> data = new Vector<>();
-            
-            
+
+            data.add(datamodel.id);
             data.add(datamodel.height);
             data.add(datamodel.weight);
             data.add(datamodel.age);
             data.add(datamodel.gender);
-            data.add(datamodel.allcalories);
+           data.add(datamodel.allcalories);
             data.add(datamodel.waterintake);
             
             datas.add(data);
             
         }
-
-        responseMdl.setData(ad_method, responseCode);
-        
         return datas;
+        
     }
 
 	  public void tryLogout(String token) {
@@ -343,47 +339,42 @@ private String Login() throws Exception{
 	        return success;
 	    }
 	    
-	    /**
 	    
-	    public Boolean tryUpdateUser(String token, String id) {
-	        boolean success = false;
-	        try {
-	            success = UpdateUser(token, id);
-	        } catch (Exception ex) {
-	            ex.printStackTrace();
-	        }
-	        return success;
-	    }
-	    private Boolean UpdateUser (String token, String id) throws Exception{
-	        URL url = new URL("http://localhost:8000/api/update-user/{users}/" +id  );
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        
-	        conn.setRequestProperty("Authorization", "Bearer " +token);
-	        conn.setRequestMethod("PUT");
-	        conn.setDoOutput(true);
+	    
+	    public Boolean tryUpdateUser (String token,String id){
+            boolean success =false;
+            try{
+                success = UpdateUser(token,id);
 
-	        conn.connect();
-	        
-	        int responseCode = conn.getResponseCode();
-	        String text = "";
-	        boolean success = false;
-	        
-	        if(responseCode == 200) {
-	            success = true;
-	            text = new String(
-	                conn.getInputStream().readAllBytes(), 
-	                StandardCharsets.UTF_8);
-	        }else {
-	            throw new RuntimeException("Http válasz: " + responseCode);
-	        }
-	        
-	        JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
-	        
-	        String message_raw = jsonObject.get("message").toString();
-	        UpdateUserMsg = message_raw.substring(1, message_raw.length() - 1);
-	        
-	        return success;
-	    }
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+            return success;
+       }
+       private Boolean UpdateUser (String token, String id) throws Exception{
+           URL url = new URL("http://localhost:8000/api/update-user" + id);
+        HttpURLConnection http = (HttpURLConnection) url.openConnection();
+        
+        http.setRequestProperty("Authorization", "Bearer " +token);
+        http.setRequestMethod("PUT");
+        http.setDoOutput(true);
+
+        http.connect();
+        
+        boolean success = false;
+        String text = "";
+        int responseCode = http.getResponseCode();
+        
+        if(responseCode == 200) {
+            success = true;
+            text = new String(
+                http.getInputStream().readAllBytes(), 
+                StandardCharsets.UTF_8);
+        }else {
+            throw new RuntimeException("Http válasz: " + responseCode);
+        }
+        return success;
+       }
 	    
 	    
 	    //Update-meal//
@@ -422,64 +413,10 @@ private String Login() throws Exception{
 	            throw new RuntimeException("Http válasz: " + responseCode);
 	        }
 	        
-	        JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
-	        String message_raw = jsonObject.get("message").toString();
-	        UpdateMealMsg = message_raw.substring(1, message_raw.length() - 1);
-	        
-	        
-	        
-	        
-	        return success;
-	    }
-	    public Boolean trySearchUser(String token, String id) {
-	        boolean success = false;
-	        try {
-	            success = SearchUser(token, id);
-	        } catch (Exception ex) {
-	            ex.printStackTrace();
-	        }
-	        return success;
-	    }
-	    private Boolean SearchUser(String token, String id) throws Exception{
-	        URL url = new URL("http://localhost:8000/api/search-user/" + id);
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        
-	        conn.setRequestProperty("Authorization", "Bearer " +token);
-	        conn.setRequestMethod("GET");
-	        conn.setDoOutput(true);
 
-	        conn.connect();
-	        
-	        int responseCode = conn.getResponseCode();
-	        String text = "";
-	        boolean success = false;
-	        
-	        if(responseCode == 200) {
-	            success = true;
-	            text = new String(
-	                conn.getInputStream().readAllBytes(), 
-	                StandardCharsets.UTF_8);
-	        }else {
-	            throw new RuntimeException("Http válasz: " + responseCode);
-	        }
-	
-	        
-	     
-	        
-	        
 	        return success;
 	    }
-	    
-	     */
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+
 	  
 	    private void Logout(String token) throws Exception{
 	    
@@ -501,7 +438,7 @@ private String Login() throws Exception{
 	                conn.getInputStream().readAllBytes(), 
 	                StandardCharsets.UTF_8);
 	        
-	        System.out.println(text);
+	        System.out.println("Sikeres kijelentkezes");
 	    }
 	
 	    

@@ -1,7 +1,7 @@
 package Model;
 
 public class DataModel {
-	public int dataid;	
+	public int id;	
 	public int height;
 	public int weight;
 	public int age;
@@ -11,8 +11,8 @@ public class DataModel {
 
 	
 	
-	public DataModel (int dataid, int weight, int age, String gender, int allcalories,int waterintake, int height) {
-		this.dataid=dataid;
+	public DataModel (int id, int weight, int age, String gender, int allcalories,int waterintake, int height) {
+		this.id=id;
 		this.weight=weight;
 		this.age=age;
 		this.gender=gender;
