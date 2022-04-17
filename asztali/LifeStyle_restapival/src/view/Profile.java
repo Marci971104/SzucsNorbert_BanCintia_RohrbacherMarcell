@@ -17,7 +17,7 @@ import javax.swing.GroupLayout;
  *
  * @author resahh
  */
-public class LifeForm extends javax.swing.JFrame {
+public class Profile extends javax.swing.JFrame {
 
     /**
 	 * 
@@ -27,7 +27,7 @@ public class LifeForm extends javax.swing.JFrame {
 	/**
      * Creates new form BikeForm
      */
-    public LifeForm() {
+    public Profile() {
         initComponents();
     }
 
@@ -42,7 +42,6 @@ public class LifeForm extends javax.swing.JFrame {
 
         jPanel9 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        northPnl = new javax.swing.JPanel();
         eastPnl = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -76,9 +75,9 @@ public class LifeForm extends javax.swing.JFrame {
         tableTb.setBackground(Color.WHITE);
         tableTb.setForeground(new Color(255, 255, 255));
         tableTb.setMaximumSize(new Dimension(500, 500));
-        userTb = new javax.swing.JPanel();
+        dataTb = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        userTbl = new javax.swing.JTable();
+        dataTbl = new javax.swing.JTable();
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -92,15 +91,10 @@ public class LifeForm extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Ételek");
+        setTitle("Adatok");
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         jPanel1.setLayout(new java.awt.BorderLayout());
-
-        northPnl.setPreferredSize(new java.awt.Dimension(769, 40));
-        northPnl.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 12));
-
-        jPanel1.add(northPnl, java.awt.BorderLayout.NORTH);
 
         eastPnl.setPreferredSize(new java.awt.Dimension(150, 491));
         eastPnl.setLayout(new java.awt.GridLayout(9, 1));
@@ -136,43 +130,19 @@ public class LifeForm extends javax.swing.JFrame {
         eastPnl.add(jPanel13);
 
         eastPnl.add(jPanel14);
-        
-        profilBtn = new JButton();
-        profilBtn.setText("Profil");
-        profilBtn.setPreferredSize(new Dimension(85, 30));
-        jPanel14.add(profilBtn);
 
         jPanel15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
         eastPnl.add(jPanel15);
-        updateBtn = new javax.swing.JButton();
-        jPanel15.add(updateBtn);
-        
-        updateBtn.setText("M\u00F3dos\u00EDt\u00E1s");
-        updateBtn.setPreferredSize(new java.awt.Dimension(85, 30));
-        deleteBtn = new javax.swing.JButton();
-        deleteBtn.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        
-                deleteBtn.setText("Törlés");
-                deleteBtn.setPreferredSize(new java.awt.Dimension(85, 30));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16Layout.setHorizontalGroup(
         	jPanel16Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jPanel16Layout.createSequentialGroup()
-        			.addGap(31)
-        			.addComponent(deleteBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(34, Short.MAX_VALUE))
+        		.addGap(0, 150, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
         	jPanel16Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jPanel16Layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(deleteBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(13, Short.MAX_VALUE))
+        		.addGap(0, 54, Short.MAX_VALUE)
         );
         jPanel16.setLayout(jPanel16Layout);
 
@@ -329,9 +299,9 @@ public class LifeForm extends javax.swing.JFrame {
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 1));
 
-        userTb.setLayout(new java.awt.GridLayout(1, 1));
+        dataTb.setLayout(new java.awt.GridLayout(1, 1));
 
-        userTbl.setModel(new javax.swing.table.DefaultTableModel(
+        dataTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -342,35 +312,13 @@ public class LifeForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(userTbl);
+        jScrollPane1.setViewportView(dataTbl);
 
-        userTb.add(jScrollPane1);
+        dataTb.add(jScrollPane1);
 
-        tableTb.addTab("Tagok", userTb);
+        tableTb.addTab("Tagok", dataTb);
 
         jPanel10.add(tableTb);
-        mealTb = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        mealTbl = new javax.swing.JTable();
-        
-                mealTb.setLayout(new java.awt.GridLayout(1, 1));
-                
-                        mealTbl.setModel(new javax.swing.table.DefaultTableModel(
-                            new Object [][] {
-                                {null, null, null, null},
-                                {null, null, null, null},
-                                {null, null, null, null},
-                                {null, null, null, null}
-                            },
-                            new String [] {
-                                "Title 1", "Title 2", "Title 3", "Title 4"
-                            }
-                        ));
-                        jScrollPane2.setViewportView(mealTbl);
-                        
-                                mealTb.add(jScrollPane2);
-                                
-                                        tableTb.addTab("Ételek", mealTb);
 
         centerPnl.add(jPanel10, java.awt.BorderLayout.CENTER);
 
@@ -415,12 +363,7 @@ public class LifeForm extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JPanel mealTb;
-    private javax.swing.JTable mealTbl;
     private javax.swing.JPanel centerPnl;
-    private javax.swing.JButton deleteBtn;
     private javax.swing.JPanel eastPnl;
     private javax.swing.JButton exitBtn;
     private javax.swing.JPanel jPanel1;
@@ -443,16 +386,12 @@ public class LifeForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JPanel userTb;
-    private javax.swing.JTable userTbl;
-    private javax.swing.JPanel northPnl;
-    private javax.swing.JButton updateBtn;
+    private javax.swing.JPanel dataTb;
+    private javax.swing.JTable dataTbl;
     private javax.swing.JPanel southPnl;
     private javax.swing.JLabel statusLbl;
     private javax.swing.JTabbedPane tableTb;
     private javax.swing.JPanel westPnl;
-    private JButton profilBtn;
     // End of variables declaration                   
 
     public JButton getExitBtn(){ return exitBtn; }
@@ -460,37 +399,19 @@ public class LifeForm extends javax.swing.JFrame {
     
     public JTabbedPane getTableTb() { return tableTb ; }
 
-    public JPanel getMealTb() {
-        return mealTb;
-    }
-
-    public JTable getMealTbl() {
-        return mealTbl;
-    }
-
-    public JPanel getUserTb() {
-        return userTb;
-    }
-
-    public JTable getUserTbl() {
-        return userTbl;
-    }
-
-    public JButton getDeleteBtn() {
-        return deleteBtn;
-    }
-
-    public JButton getUpdateBtn() {
-        return updateBtn;
-    }
-
-    public JButton getProfileBtn() {
-        return profilBtn;
-    }
+   
 
   
-    
- 
+
+    public JPanel getDataTb() {
+        return dataTb;
+    }
+
+    public JTable getDataTbl() {
+        return dataTbl;
+    }
+
+
 
     public void setStatusLbl( String text, String method ) {
         statusLbl.setText( text );

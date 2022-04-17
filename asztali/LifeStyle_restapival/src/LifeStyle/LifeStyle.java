@@ -1,3 +1,4 @@
+package LifeStyle;
 
 import control.Controller;
 import view.LifeForm;

@@ -11,15 +11,15 @@ export class MealsService {
   constructor(private http: HttpClient) {}
   getMeals() {
 
-    let endpoint = 'calorieapp';
+    let endpoint = 'show-all-meal';
     let url = this.host + endpoint;
     return this.http.get<any>(url);
 
   }
-  addMeal(id:number, name:string, calorievalue:number, fat:number, protein:number, carbohydrate:number, salt:number){
+  addMeal( name:string, calorievalue:string, fat:string, protein:string, carbohydrate:string, salt:string){
 
     let newData = {
-      id: id,
+
       name: name,
       calorievalue: calorievalue,
       fat: fat,
@@ -40,7 +40,7 @@ export class MealsService {
     let header = {
       headers: headerObj,
     };
-    let endpoint = 'meals';
+    let endpoint = 'store-meal';
     let url = this.host + endpoint;
     return this.http.post<any>(url, data, header);
   }

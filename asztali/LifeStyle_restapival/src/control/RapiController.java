@@ -11,7 +11,7 @@ public class RapiController {
     private String token;
     private String method;
 	private String id;
-	private String dataid;
+	
     
     public RapiController() {
         rapiMdl = new RapiModel();
@@ -38,10 +38,10 @@ public class RapiController {
     
     
     
-    public Vector<Vector<Object>> getDatas() {
+    public Vector<Vector<Object>> getData() {
         Vector<Vector<Object>> datas = new Vector<>();
         
-        datas = rapiMdl.tryDatas(token, method);
+        datas = rapiMdl.tryDatas(token, method, id);
         
         return datas;
     }

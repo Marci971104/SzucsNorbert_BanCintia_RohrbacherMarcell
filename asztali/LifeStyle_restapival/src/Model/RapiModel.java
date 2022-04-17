@@ -190,19 +190,19 @@ private String Login() throws Exception{
         
     }
     
-    public Vector<Vector<Object>> tryDatas(String token,  String method) {
+    public Vector<Vector<Object>> tryDatas(String token,  String method, String id) {
         Vector<Vector<Object>> datas = new Vector<>();
         try {
-            datas = Datas(token, method);
+            datas = Datas(token, method, id );
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return datas;
     }
     
-	private Vector<Vector<Object>> Datas(String token,  String method) throws Exception{
+	private Vector<Vector<Object>> Datas(String token,  String method, String id) throws Exception{
         
-        URL url = new URL("http://localhost:8000/api/show-all-data/" );
+        URL url = new URL("http://localhost:8000/api/show-data/"+id );
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         
         conn.setRequestProperty("Authorization", "Bearer " +token);
@@ -448,13 +448,7 @@ private String Login() throws Exception{
 	    public String getDeleteUserMsg() {
 	        return DeleteUserMsg;
 	    }
-		public void setDeleteMealMsg(String deleteMealMsg) {
-			DeleteMealMsg = deleteMealMsg;
-		}
 
-		public void setDeleteUserMsg(String deleteUserMsg) {
-			DeleteUserMsg = deleteUserMsg;
-		}
 
 		
 	

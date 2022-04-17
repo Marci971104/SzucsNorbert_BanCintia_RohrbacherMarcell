@@ -21,7 +21,7 @@ crossorigin="anonymous"
       <thead id="th">
         
         <tr id="tr">
-          <button (click)="logout()" id="btns" class="btn btn-outline-dark">Vissza</button>
+          <a routerLink="/home" id="btns" class="btn btn-outline-dark">Vissza</a>
           <th >Név</th>
           <th >Kalória érték</th>
           <th >Zsír</th>
@@ -35,13 +35,13 @@ crossorigin="anonymous"
       
       <tbody>
         <tr *ngFor="let meals of meal">
-          <td>{{ meals.id }}</td>
-          <td>{{ meals.name }}</td>
-          <td>{{ meals.calorievalue }}</td>
-          <td>{{ meals.fat}}</td>
-          <td>{{ meals.protein }}</td>
-          <td>{{ meals.carbohydrate }}</td>
-          <td>{{ meals.salt }}</td>
+          <td>{{ meal.id }}</td>
+          <td>{{ meal.name }}</td>
+          <td>{{ meal.calorievalue }}</td>
+          <td>{{ meal.fat}}</td>
+          <td>{{ meal.protein }}</td>
+          <td>{{ meal.carbohydrate }}</td>
+          <td>{{ meal.salt }}</td>
         </tr>
       </tbody>
     </table>

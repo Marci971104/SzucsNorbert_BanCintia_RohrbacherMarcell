@@ -11,7 +11,7 @@ public class ProfileModel {
     
 
     
-    public Vector<String> getProfileColumnNames() {
+    public Vector<String> getDataColumnNames() {
         
         Vector<String> columnNames = new Vector<>();
         

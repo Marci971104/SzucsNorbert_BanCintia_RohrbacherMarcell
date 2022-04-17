@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (res) => {
           alert("Sikeres regisztráció!");
-          this.router.navigate(['/login']);
+          this.router.navigate(['']);
         }, (error) => {
           console.error(error);
           alert("A regisztráció sikertelen!");

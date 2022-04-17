@@ -32,20 +32,20 @@ export class AuthService {
     return this.http.post<any>(url, data, header);
   }
   isLoggedIn() {
-    if (localStorage.getItem('currentUser') == null) {
+    if (localStorage.getItem('token') == null) {
       return false;
     }
-    let data: any = localStorage.getItem('currentUser');
+    let data: any = localStorage.getItem('token');
     let currentUser = JSON.parse(data);
     let token = currentUser.token;
     return token;
   }
   logout() {
-    if (localStorage.getItem('currentUser') == null) {
+    if (localStorage.getItem('token') == null) {
       return;
     }
-    let data: any = localStorage.getItem('currentUser');
-    localStorage.removeItem('currentUser');
+    let data: any = localStorage.getItem('token');
+    localStorage.removeItem('token');
     let currentUser = JSON.parse(data);
     let token = currentUser.token;
 
@@ -67,8 +67,14 @@ export class AuthService {
 
   register(email: string, name: string, password: string, confirm_password: string) {
 
-    let authData;
-    let data = JSON.stringify(authData);
+    let example={
+      name:name,
+      email:email,
+      password:password,
+      confirm_password:confirm_password
+     
+    };
+    let data = JSON.stringify(example);
     let headerObj = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -81,4 +87,6 @@ export class AuthService {
     let url = this.host + endpoint;
     return this.http.post<any>(url, data, header);
   }
+  
+
 }

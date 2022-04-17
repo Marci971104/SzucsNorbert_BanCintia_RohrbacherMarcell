@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MealsService } from './../shared/meals.service';
 import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MealsComponent implements OnInit {
   registerForm !: FormGroup;
-  meal !: any;
+  meal : any;
   toDisplay = false;
 
 
@@ -23,19 +23,23 @@ export class MealsComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    
     this.getMeals();
-    this.registerForm = this.formBuilder.group({
-      id:[''],
-      name:[''],
-      calorievalue: [''],
-      fat:[''],
-      protein:[''],
-      carbohydrate:[''],
-      salt:['']
+
+      this.registerForm = new FormGroup({
+        name: new FormControl('', [Validators.required, Validators.pattern('[a-zéáíűőúöüóA-ZÉÁÍSŰŐÚÖÜÓ0-9]+'), Validators.minLength(4), Validators.maxLength(50)]),
+        calorievalue: new FormControl('', [Validators.required, Validators.email,  Validators.maxLength(255)]),
+        fat: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+        protein: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+        carbohydrate: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+        salt: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+
+
+
     });
   }
   addMeal() {
-    let id = this.registerForm.value.id;
+    
     let name = this.registerForm.value.name;
     let calorievalue = this.registerForm.value.calorievalue;
     let fat = this.registerForm.value.fat;
@@ -43,7 +47,7 @@ export class MealsComponent implements OnInit {
     let carbohydrate = this.registerForm.value.carbohydrate;
     let salt = this.registerForm.value.salt;
 
-    this.meals.addMeal(id,name, calorievalue, fat, protein, carbohydrate, salt).subscribe((res) => {
+    this.meals.addMeal(name, calorievalue, fat, protein, carbohydrate, salt).subscribe((res) => {
       console.log(res);
 
       this.getMeals();
