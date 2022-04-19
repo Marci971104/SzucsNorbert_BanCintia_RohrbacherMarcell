@@ -36,6 +36,7 @@ Route::group( ["middleware" => ["auth:sanctum"]], function(){
 
     Route::post("/store-data",[DataController::class,"storeData"]);
     Route::get("/show-data/{dataid}",[DataController::class,"show"]);
+    Route::get("/show-all-data",[DataController::class,"showAllData"]);
     //Route::get( "/search-data/{dataid}", [DataController::class, "search" ]);
     Route::put("/update-data/{id}",[DataController::class,"update"]);
     Route::delete("/delete-data/{dataid}",[DataController::class,"destroy"]);

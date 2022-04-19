@@ -9,6 +9,7 @@ import { MealsComponent } from './meals/meals.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { BmiComponent } from './bmi/bmi.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -20,6 +21,7 @@ import { BmiComponent } from './bmi/bmi.component';
     RegisterComponent,
     HomeComponent,
     BmiComponent,
+    AboutComponent,
 
 
 

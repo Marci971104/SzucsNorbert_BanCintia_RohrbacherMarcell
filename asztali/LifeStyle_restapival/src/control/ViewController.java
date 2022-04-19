@@ -1,25 +1,21 @@
 package control;
 
-import Model.ProfileModel;
+
 import Model.ViewModel;
-
 import view.LifeForm;
-import view.Profile;
-
 import java.util.Vector;
-
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class ViewController {
 
     private LifeForm lifeFrm;
-    private Profile proFrm;
+
     private ViewModel viewMdl;
     private Vector<Vector<Object>> tableData;
     private RapiController rapiCtr;
 	private String id;
-	private ProfileModel proMdl;
+	
 	
   public ViewController(RapiController rapiCtr) {
         
@@ -33,29 +29,24 @@ public class ViewController {
 	   
     	lifeFrm.getExitBtn().addActionListener( event -> { exit();});
     	lifeFrm.getTableTb().addChangeListener(event -> {initTables();});
-    	proFrm.getTableTb().addChangeListener(event -> {initProfile();});
+    	
     	lifeFrm.getDeleteBtn().addActionListener(event -> {delete();});
     	lifeFrm.getUpdateBtn().addActionListener(event ->{update();});
-    	lifeFrm.getProfileBtn().addActionListener(event ->{ShowData();});
+
 
   
  
     }
     private void initFrames() {
     	initLifeFrame();
-    	initProfile();
-    	initProfileFrame();
+
      
         initTables();
+        initDatas();
      
     }
     
-    private void initProfileFrame() {
-    	proFrm = new Profile();
-        proFrm.setTitle("Profil");
-        proFrm.setLocationRelativeTo(null);
-        proFrm.setVisible(true);
-    }
+  
     
     
     private void initLifeFrame() {
@@ -67,19 +58,7 @@ public class ViewController {
     }  
     
     
-    private void initProfile() {
-    	
-    	Vector<String> columnNames = new Vector<>();
-        tableData = new Vector<>();
-        
-        if(proFrm.getTableTb().getSelectedIndex() == 0) {
-            columnNames = proMdl.getDataColumnNames();
-            tableData = rapiCtr.getUsers();
-            TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
-            proFrm.getDataTbl().setModel(tableMdl);
-        }
-    	
-    }
+
  
  private void initTables() {
     	 
@@ -98,6 +77,23 @@ public class ViewController {
             lifeFrm.getMealTbl().setModel(tableMdl);
     }   
 }
+ private void initDatas() {
+
+ 	Vector<String> columnNames = new Vector<>();
+     tableData = new Vector<>();
+
+ 	if(lifeFrm.getTableTb().getSelectedIndex() == 0) {
+         columnNames = viewMdl.getDataColumnNames();
+         tableData = rapiCtr.getData();
+         TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
+         lifeFrm.getDataTbl().setModel(tableMdl);
+ }else {
+         columnNames = viewMdl.getDataColumnNames();
+         tableData = rapiCtr.getData();
+         TableModel tableMdl = new DefaultTableModel(tableData, columnNames);
+         lifeFrm.getDataTbl().setModel(tableMdl);
+ }
+ }
 
 	
     private void delete() {
@@ -168,16 +164,7 @@ public class ViewController {
       initTables();
   }
   
-  private void ShowData() {
-      int row = proFrm.getDataTbl().getSelectedRow();
-      String value = proFrm.getDataTbl().getModel().getValueAt(row, 0).toString();
-      rapiCtr.setId(value);
-      
-      rapiCtr.getData();
-     
-      
-     
-  }
+
   
   
   private void exit() {

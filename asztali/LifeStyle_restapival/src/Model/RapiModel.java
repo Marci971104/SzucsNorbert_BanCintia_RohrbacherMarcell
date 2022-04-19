@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -20,10 +21,15 @@ import java.util.Vector;
 
 public class RapiModel {
 	
+	
 	private String DeleteMealMsg;
 	private String DeleteUserMsg;
 	 private ResponseModel responseMdl;
-
+	 
+	 
+	 public int loginResponseCode;
+	 public int logoutResponseCode;
+	 public int UserResponseCode;
 
 	
 	
@@ -37,7 +43,7 @@ public String tryLogin() {
 	        return result;
 	    }
 	
-private String Login() throws Exception{
+public String Login() throws Exception{
         
         URL url = new URL("http://localhost:8000/api/login");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -54,13 +60,13 @@ private String Login() throws Exception{
         
         conn.connect();
         String text = "";
-        int responseCode = conn.getResponseCode();
-        if(responseCode == 200) {
+        loginResponseCode = conn.getResponseCode();
+        if(loginResponseCode == 200) {
             text = new String(
                 conn.getInputStream().readAllBytes(), 
                 StandardCharsets.UTF_8);
         }else {
-            throw new RuntimeException("Http válasz: " + responseCode);
+            throw new RuntimeException("Http válasz: " + loginResponseCode);
         }
         JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
         JsonObject tokenObject = jsonObject.getAsJsonObject("data");
@@ -86,7 +92,7 @@ private String Login() throws Exception{
     public Vector<Vector<Object>> Users(String token ) throws Exception{
     
        URL url = new URL("http://localhost:8000/api/show-all-user/" );
-       //URL url = new URL("http://localhost:8000/api/show-all-users/" + search_text); 
+       
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         
         conn.setRequestProperty("Authorization", "Bearer " +token);
@@ -96,13 +102,13 @@ private String Login() throws Exception{
         conn.connect();
         
         String text = "";
-        int responseCode = conn.getResponseCode();
-        if(responseCode == 200) {
+        int UserResponseCode = conn.getResponseCode();
+        if(UserResponseCode == 200) {
             text = new String(
                 conn.getInputStream().readAllBytes(), 
                 StandardCharsets.UTF_8);
         }else {
-            throw new RuntimeException("Http válasz: " + responseCode);
+            throw new RuntimeException("Http válasz: " + UserResponseCode);
         }
         JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
         GsonBuilder builder = new GsonBuilder();
@@ -190,27 +196,25 @@ private String Login() throws Exception{
         
     }
     
-    public Vector<Vector<Object>> tryDatas(String token,  String method, String id) {
+	public Vector<Vector<Object>> tryDatas(String token,  String ad_method) {
         Vector<Vector<Object>> datas = new Vector<>();
         try {
-            datas = Datas(token, method, id );
+            datas = Datas(token,  ad_method);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return datas;
     }
-    
-	private Vector<Vector<Object>> Datas(String token,  String method, String id) throws Exception{
-        
-        URL url = new URL("http://localhost:8000/api/show-data/"+id );
+    private Vector<Vector<Object>> Datas(String token, String ad_method) throws Exception{
+        URL url = new URL("http://localhost:8000/api/show-all-data" );
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        
+
         conn.setRequestProperty("Authorization", "Bearer " +token);
-        conn.setRequestMethod(method);
+        conn.setRequestMethod(ad_method);
         conn.setDoOutput(true);
 
         conn.connect();
-        
+
         String text = "";
         int responseCode = conn.getResponseCode();
         if(responseCode == 200) {
@@ -226,13 +230,13 @@ private String Login() throws Exception{
         Gson gson = builder.create();
 
         JsonArray arr = jsonObject.getAsJsonArray("data");
-        
-        DataModel[] dataArray = gson.fromJson(arr, DataModel[].class);
-        ArrayList<DataModel> lista = new ArrayList<>(Arrays.asList(dataArray));
-        
+
+        DataModel[] adArray = gson.fromJson(arr, DataModel[].class);
+        ArrayList<DataModel> lista = new ArrayList<>(Arrays.asList(adArray));
+
         Vector<Vector<Object>> datas = new Vector<>();
         for(DataModel datamodel: lista) {
-            
+
             Vector<Object> data = new Vector<>();
 
             data.add(datamodel.id);
@@ -240,24 +244,20 @@ private String Login() throws Exception{
             data.add(datamodel.weight);
             data.add(datamodel.age);
             data.add(datamodel.gender);
-           data.add(datamodel.allcalories);
+            data.add(datamodel.allcalories);
             data.add(datamodel.waterintake);
-            
-            datas.add(data);
-            
-        }
-        return datas;
-        
-    }
 
-	  public void tryLogout(String token) {
-	        try {
-	            
-	            Logout(token);
-	        } catch (Exception ex) {
-	            ex.printStackTrace();
-	        }
-	    }
+            datas.add(data);
+
+        }
+
+        
+
+        return datas;
+    }
+    
+
+
 	  
 	  public Boolean tryDeleteMeal(String token, String id) {
 	        boolean success = false;
@@ -417,29 +417,41 @@ private String Login() throws Exception{
 	        return success;
 	    }
 
-	  
-	    private void Logout(String token) throws Exception{
 	    
-	        URL url = new URL("http://localhost:8000/api/logout");
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        
-	        conn.setRequestProperty("Authorization", "Bearer " +token);
-	        conn.setRequestMethod("POST");
-	        conn.setDoOutput(true);
-	        
-	        String data = token;
-	        byte[] out = data.getBytes(StandardCharsets.UTF_8);
-	        
-	        OutputStream stream = conn.getOutputStream();
-	        stream.write(out);
-	        
-	        String text = "";
-	        text = new String(
-	                conn.getInputStream().readAllBytes(), 
-	                StandardCharsets.UTF_8);
-	        
-	        System.out.println("Sikeres kijelentkezes");
-	    }
+		  public void tryLogout(String token) {
+		        try {
+		            
+		            Logout(token);
+		        } catch (Exception ex) {
+		            ex.printStackTrace();
+		        }
+		    }
+		  
+		   public void Logout(String token) throws Exception{
+			    
+		        URL url = new URL("http://localhost:8000/api/logout");
+		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        
+		        conn.setRequestProperty("Authorization", "Bearer " +token);
+		        conn.setRequestMethod("POST");
+		        conn.setDoOutput(true);
+		        
+		        String data = token;
+		        byte[] out = data.getBytes(StandardCharsets.UTF_8);
+		        
+		        OutputStream stream = conn.getOutputStream();
+		        stream.write(out);
+		        logoutResponseCode= conn.getResponseCode();
+		        
+		        String text = "";
+		        text = new String(
+		                conn.getInputStream().readAllBytes(), 
+		                StandardCharsets.UTF_8);
+		        
+		        System.out.println("Sikeres kijelentkezes");
+		    }
+	  
+	 
 	
 	    
 	    public String getDeleteMealMsg() {

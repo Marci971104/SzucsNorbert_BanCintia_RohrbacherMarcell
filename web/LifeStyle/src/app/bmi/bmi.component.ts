@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bmi.component.css']
 })
 export class BmiComponent implements OnInit {
-  title = 'Testömegindex';
+  title = 'Testtömegindex';
   weight:string;
   height:string;
   index:string;

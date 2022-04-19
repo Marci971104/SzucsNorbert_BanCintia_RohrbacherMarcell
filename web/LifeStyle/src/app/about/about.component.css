@@ -1,0 +1,16 @@
+h1{
+    text-align: center;
+}
+p{
+    font-size: x-large;
+
+}
+div{
+    background-color: #EEE5DB;
+    padding: 30px;
+}
+#btns{
+    background-color: #DDCBB9;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

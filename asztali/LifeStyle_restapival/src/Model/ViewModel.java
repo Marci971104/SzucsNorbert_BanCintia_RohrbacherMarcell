@@ -37,6 +37,22 @@ public class ViewModel {
         
         return columnNames;
     }
+public Vector<String> getDataColumnNames() {
+        
+        Vector<String> columnNames = new Vector<>();
+        
+        columnNames.add( "Id" );
+        columnNames.add( "Magasság" );
+        columnNames.add( "Súly" );
+        columnNames.add( "Életkor" );
+        columnNames.add( "Nem" );
+        columnNames.add( "Összekalória" );
+        columnNames.add( "Megivott víz (dl)" );
+      
+     
+        
+        return columnNames;
+    }
     
     
 }

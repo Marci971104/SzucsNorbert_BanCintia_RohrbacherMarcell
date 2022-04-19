@@ -43,6 +43,11 @@ class DataController extends BaseController
         return $this->sendResponse(new DataResources($data),"Adat betöltve");
     }
 
+    public function showAllData() {
+        $datas = Data::all();
+        return $this -> sendResponse(DataResources::collection($datas),"Összes adat a felhasználótól");
+    }
+
     public function showAll(){
         $data = Data::all();
         if(is_null($data)){

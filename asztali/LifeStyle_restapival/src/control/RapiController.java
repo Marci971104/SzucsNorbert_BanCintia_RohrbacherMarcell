@@ -41,7 +41,7 @@ public class RapiController {
     public Vector<Vector<Object>> getData() {
         Vector<Vector<Object>> datas = new Vector<>();
         
-        datas = rapiMdl.tryDatas(token, method, id);
+        datas = rapiMdl.tryDatas(token, method);
         
         return datas;
     }
@@ -55,11 +55,7 @@ public class RapiController {
         
         return meals;
     }
-    public void setMeal( String method) {
-        
-        
-        this.method = method;
-    }
+ 
     
     public Boolean DeleteMeal() {
         boolean success = rapiMdl.tryDeleteMeal(token, id);

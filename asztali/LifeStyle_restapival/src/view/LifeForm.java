@@ -11,7 +11,13 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
+
+import javax.swing.AbstractButton;
 import javax.swing.GroupLayout;
+import java.awt.GridLayout;
+import javax.swing.JScrollPane;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 /**
  *
@@ -42,7 +48,6 @@ public class LifeForm extends javax.swing.JFrame {
 
         jPanel9 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        northPnl = new javax.swing.JPanel();
         eastPnl = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -97,11 +102,6 @@ public class LifeForm extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        northPnl.setPreferredSize(new java.awt.Dimension(769, 40));
-        northPnl.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 12));
-
-        jPanel1.add(northPnl, java.awt.BorderLayout.NORTH);
-
         eastPnl.setPreferredSize(new java.awt.Dimension(150, 491));
         eastPnl.setLayout(new java.awt.GridLayout(9, 1));
 
@@ -136,11 +136,6 @@ public class LifeForm extends javax.swing.JFrame {
         eastPnl.add(jPanel13);
 
         eastPnl.add(jPanel14);
-        
-        profilBtn = new JButton();
-        profilBtn.setText("Profil");
-        profilBtn.setPreferredSize(new Dimension(85, 30));
-        jPanel14.add(profilBtn);
 
         jPanel15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
@@ -352,6 +347,39 @@ public class LifeForm extends javax.swing.JFrame {
         mealTb = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         mealTbl = new javax.swing.JTable();
+        dataTb = new javax.swing.JPanel();
+        dataTbl = new javax.swing.JTable();
+
+                        dataTbl.setModel(new javax.swing.table.DefaultTableModel(
+                            new Object [][] {
+                                {null, null, null, null},
+                                {null, null, null, null},
+                                {null, null, null, null},
+                                {null, null, null, null}
+                            },
+                            new String [] {
+                                "Title 1", "Title 2", "Title 3", "Title 4"
+                            }
+                        ));
+                        GridBagLayout gbl_dataTb = new GridBagLayout();
+                        gbl_dataTb.columnWidths = new int[]{599, 0};
+                        gbl_dataTb.rowHeights = new int[]{458, 0};
+                        gbl_dataTb.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+                        gbl_dataTb.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+                        dataTb.setLayout(gbl_dataTb);
+
+                                        tableTb.addTab("Felhasználói adatok", dataTb);
+                                        jScrollPane3 = new javax.swing.JScrollPane();
+                                        jScrollPane3.setViewportView(dataTbl);
+                                        
+                                                                        GridBagConstraints gbc_jScrollPane3 = new GridBagConstraints();
+                                                                        gbc_jScrollPane3.fill = GridBagConstraints.BOTH;
+                                                                        gbc_jScrollPane3.gridx = 0;
+                                                                        gbc_jScrollPane3.gridy = 0;
+                                                                        dataTb.add(jScrollPane3, gbc_jScrollPane3);
+                                                                        
+                                                                        dataTbl = new JTable();
+                                                                        jScrollPane3.setViewportView(dataTbl);
         
                 mealTb.setLayout(new java.awt.GridLayout(1, 1));
                 
@@ -446,13 +474,14 @@ public class LifeForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel userTb;
     private javax.swing.JTable userTbl;
-    private javax.swing.JPanel northPnl;
     private javax.swing.JButton updateBtn;
     private javax.swing.JPanel southPnl;
     private javax.swing.JLabel statusLbl;
     private javax.swing.JTabbedPane tableTb;
     private javax.swing.JPanel westPnl;
-    private JButton profilBtn;
+    private JPanel dataTb;
+    private JScrollPane jScrollPane3;
+    private JTable dataTbl;
     // End of variables declaration                   
 
     public JButton getExitBtn(){ return exitBtn; }
@@ -475,6 +504,10 @@ public class LifeForm extends javax.swing.JFrame {
     public JTable getUserTbl() {
         return userTbl;
     }
+    
+    public JTable getDataTbl() {
+        return dataTbl;
+    }
 
     public JButton getDeleteBtn() {
         return deleteBtn;
@@ -484,9 +517,7 @@ public class LifeForm extends javax.swing.JFrame {
         return updateBtn;
     }
 
-    public JButton getProfileBtn() {
-        return profilBtn;
-    }
+   
 
   
     
@@ -497,8 +528,4 @@ public class LifeForm extends javax.swing.JFrame {
     }
 
 
-	
-	
-	
-	
 }
