@@ -30,6 +30,11 @@ public class RapiModel {
 	 public int loginResponseCode;
 	 public int logoutResponseCode;
 	 public int UserResponseCode;
+	 public int MealResponseCode;
+	 public int DataResponseCode;
+	 public int DeleteMealResponseCode;
+	 public int DeleteUserResponseCode;
+	 public int DeleteDataResponseCode;
 
 	
 	
@@ -158,13 +163,13 @@ public String Login() throws Exception{
         conn.connect();
         
         String text = "";
-        int responseCode = conn.getResponseCode();
-        if(responseCode == 200) {
+         MealResponseCode = conn.getResponseCode();
+        if(MealResponseCode == 200) {
             text = new String(
                 conn.getInputStream().readAllBytes(), 
                 StandardCharsets.UTF_8);
         }else {
-            throw new RuntimeException("Http válasz: " + responseCode);
+            throw new RuntimeException("Http válasz: " + MealResponseCode);
         }
         JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
         GsonBuilder builder = new GsonBuilder();
@@ -216,13 +221,13 @@ public String Login() throws Exception{
         conn.connect();
 
         String text = "";
-        int responseCode = conn.getResponseCode();
-        if(responseCode == 200) {
+        DataResponseCode = conn.getResponseCode();
+        if(DataResponseCode == 200) {
             text = new String(
                 conn.getInputStream().readAllBytes(), 
                 StandardCharsets.UTF_8);
         }else {
-            throw new RuntimeException("Http válasz: " + responseCode);
+            throw new RuntimeException("Http válasz: " + DataResponseCode);
         }
         JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
         GsonBuilder builder = new GsonBuilder();
@@ -278,17 +283,17 @@ public String Login() throws Exception{
 
 	        conn.connect();
 	        
-	        int responseCode = conn.getResponseCode();
+	        int DeleteMealResponseCode = conn.getResponseCode();
 	        String text = "";
 	        boolean success = false;
 	        
-	        if(responseCode == 200) {
+	        if(DeleteMealResponseCode == 200) {
 	            success = true;
 	            text = new String(
 	                conn.getInputStream().readAllBytes(), 
 	                StandardCharsets.UTF_8);
 	        }else {
-	            throw new RuntimeException("Http válasz: " + responseCode);
+	            throw new RuntimeException("Http válasz: " + DeleteMealResponseCode);
 	        }
 	        
 	        JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
@@ -318,17 +323,17 @@ public String Login() throws Exception{
 
 	        conn.connect();
 	        
-	        int responseCode = conn.getResponseCode();
+	        int DeleteUserResponseCode = conn.getResponseCode();
 	        String text = "";
 	        boolean success = false;
 	        
-	        if(responseCode == 200) {
+	        if(DeleteUserResponseCode == 200) {
 	            success = true;
 	            text = new String(
 	                conn.getInputStream().readAllBytes(), 
 	                StandardCharsets.UTF_8);
 	        }else {
-	            throw new RuntimeException("Http válasz: " + responseCode);
+	            throw new RuntimeException("Http válasz: " + DeleteUserResponseCode);
 	        }
 	        
 	        JsonObject jsonObject = new JsonParser().parse(text).getAsJsonObject();
