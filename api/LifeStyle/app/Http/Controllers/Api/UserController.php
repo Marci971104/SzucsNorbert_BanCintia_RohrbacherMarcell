@@ -15,28 +15,6 @@ use App\Http\Resources\user as UserResources;
 
 class UserController extends BaseController
 {
-
-    // public function storeUser(Request $request){
-    //     //dd($request);
-    //     $input = $request->all();
-    //     $validator = Validator::make($input,[
-    //         "name" => "required",
-    //         "email" => "required",
-    //         "password" => "required",
-
-
-
-    //     ]);
-
-    //     if($validator->fails()){
-    //         return $this->sendError($validator->errors());
-    //     }
-
-    //     $user = User::create($input);
-
-    //     return $this->sendResponse(new UserResources($user),"Felhasználó kiírva");
-    // }
-
     public function show($id){
         $user = User::find($id);
         if(is_null($user)){

@@ -17,7 +17,6 @@ class MealController extends BaseController
 {
 
     public function store(Request $request){
-        //dd($request);
         $input = $request->all();
         $validator = Validator::make($input,[
             "name" => "required",
@@ -49,62 +48,6 @@ class MealController extends BaseController
         $meals = Meal::all();
         return $this -> sendResponse(MealsResources::collection($meals),"Összes étel");
     }
-
-    // public function update(Request $request, Meal $meals){
-    //     $input = $request -> all();
-    //     $validator = validator::make($input,[
-    //         "name" => "required",
-    //         "calorievalue" => "required",
-    //         "fat" => "required",
-    //         "protein" => "required",
-    //         "carbohydrate" => "required",
-    //         "salt" => "required",
-    //     ]);
-
-    //     if($validator->fails()){
-    //         return $this->sendError($validator->errors());
-    //     }
-        
-    //     $meals -> name = $input["name"];
-    //     $meals -> calorievalue = $input["calorievalue"];
-    //     $meals -> fat = $input["fat"];
-    //     $meals -> protein = $input["protein"];
-    //     $meals -> carbohydrate = $input["carbohydrate"];
-    //     $meals -> salt = $input["salt"];
-
-
-    //     $meals -> save();
-
-    //     return $this->sendResponse(new MealsResources($meals),"Adatok módosítva");
-    // }
-
-    // public function update(Request $request, Meal $meals){
-    //     $input = $request -> all();
-    //     $validator = validator::make($input,[
-    //         "name" => "required",
-    //         "calorievalue" => "required",
-    //         "fat" => "required",
-    //         "protein" => "required",
-    //         "carbohydrate" => "required",
-    //         "salt" => "required",
-    //     ]);
-    //     if($validator->fails()){
-    //         return $this->sendError("Validálási hiba",$validator->errors());
-    //     }
-        
-
-    //     $meals -> name = $input["name"];
-    //     $meals -> calorievalue = $input["calorievalue"];
-    //     $meals -> fat = $input["fat"];
-    //     $meals -> protein = $input["protein"];
-    //     $meals -> carbohydrate = $input["carbohydrate"];
-    //     $meals -> salt = $input["salt"];
-
-
-    //     $meals -> save();
-
-    //     return $this->sendResponse(new MealsResources($meals),"Étel módosítva");
-    // }
 
     public function update(Request $request, $id ) {
         $meal = Meal::find($id);
@@ -140,10 +83,6 @@ class MealController extends BaseController
             return $this->sendError("Hiba a kiírás során", $ex);
         }
     }
-
-
-
-
 
     public function destroy($id){
         Meal::destroy($id);

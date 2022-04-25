@@ -16,7 +16,6 @@ class DataController extends BaseController
 {
 
     public function storeData(Request $request){
-        //dd($request);
         $input = $request->all();
         $validator = Validator::make($input,[
             "height" => "required",
@@ -55,37 +54,6 @@ class DataController extends BaseController
         }
         return $this->sendResponse(new DataResources($data),"Adatok betöltve");
     }
-
-    // public function update(Request $request, Data $data){
-    //     $input = $request -> all();
-    //     $validator = validator::make($input,[
-    //         "height" => "required",
-    //         "weight" => "required",
-    //         "age" => "required",
-    //         "gender" => "required",
-    //         "allcalories"=>"required",
-    //         "waterintake"=>"required"
-
-
-    //     ]);
-
-    //     if($validator->fails()){
-    //         return $this->sendError($validator->errors());
-    //     }
-        
-    //     $data -> height = $input["height"];
-    //     $data -> weight = $input["weight"];
-    //     $data -> age = $input["age"];
-    //     $data -> gender = $input["gender"];
-    //     $data -> allcalories= $input["allcalories"];
-    //     $data -> waterintake= $input["waterintake"];
-
-
-
-    //     $data -> save();
-
-    //     return $this->sendResponse(new DataResources($data),"Adatok sikeresen módosítva");
-    // }
 
 
     public function update(Request $request, $id ) {
