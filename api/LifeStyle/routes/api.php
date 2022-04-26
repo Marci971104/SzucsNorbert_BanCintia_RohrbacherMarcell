@@ -30,4 +30,5 @@ Route::group( ["middleware" => ["auth:sanctum"]], function(){
     Route::get( "/search-user/{id}", [UserController::class, "search" ]);
     Route::put("/update-user/{id}",[UserController::class,"update"]);
     Route::delete("/delete-user/{id}",[UserController::class,"destroy"]);
+    Route::put("/waterintake/{id}",[DataController::class,"increaseWater"]);
 });

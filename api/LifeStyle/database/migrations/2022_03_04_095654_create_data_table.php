@@ -50,6 +50,86 @@ return new class extends Migration
             'created_at'=>'2022-03-20 13:40:17',
             'updated_at'=>'2022-03-20 13:40:17'
         ));
+
+        DB::table('data')->insert(array(
+            'id'=>'3',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
+
+        DB::table('data')->insert(array(
+            'id'=>'4',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
+
+        DB::table('data')->insert(array(
+            'id'=>'5',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
+
+        DB::table('data')->insert(array(
+            'id'=>'6',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
+
+        DB::table('data')->insert(array(
+            'id'=>'7',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
+
+        DB::table('data')->insert(array(
+            'id'=>'8',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
+
+        DB::table('data')->insert(array(
+            'id'=>'9',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
+
+        DB::table('data')->insert(array(
+            'id'=>'10',
+            'height'=>0,
+            'weight'=>0,
+            'age'=>0,    
+            'gender'=>"",  
+            'allcalories'=>0,
+            "waterintake"=>0,
+        ));
     }
 
     /**

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Models\User;
 use App\Http\Controllers\API\Users;
- 
 use App\Http\Resources\user as UserResources;
 
 
@@ -22,7 +21,6 @@ class UserController extends BaseController
         }
         return $this->sendResponse(new UserResources($user),"Felhasználó adatai betöltve");
     }
-
 
     public function showAll(){
         if(auth( "sanctum" )->user()->admin){
@@ -91,15 +89,14 @@ class UserController extends BaseController
             if($account->admin){
                 return $this->sendError("Az admin nem törölhető");
             }
-
             DB::table('personal_access_tokens')
                 ->where('tokenable_id', '=', $account->id)
                 ->delete();
             try {
                 User::destroy($account->id);
                 return $this->sendResponse([], "A felhasználó törölve!");
-            } catch (\Throwable $ex) {
-                return $this->sendError("Hiba a felhasználó törlése során!", $ex);
+            } catch (\Throwable $e) {
+                return $this->sendError("Hiba a felhasználó törlése során!", $e);
             }
         }else{
             return $this->sendError("Ez a fiók nem az öné ezért nem törölheti!");

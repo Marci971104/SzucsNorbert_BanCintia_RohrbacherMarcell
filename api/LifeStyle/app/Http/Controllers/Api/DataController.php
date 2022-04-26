@@ -87,6 +87,24 @@ class DataController extends BaseController
         }
     }
 
+//     public function increaseWater(Request $request, $id){
+//         $data = Data::find($id);
+//         if( is_null($data)){
+//             return $this->sendError("Nincs ilyen adat");
+//         }
+//         ->update([
+//        'waterintake' => DB::raw('waterintake + 1');
+//        $data -> save();
+//         return $this->sendResponse(new DataResources($data), "Adatok módosítva");
+
+//    ]);
+//     }
+
+
+public function increaseWater(Request $request, $id ) {
+    $data = Data::find($id)->increment('waterintake');
+    
+}
 
     public function destroy($id){
         Data::destroy($id);
