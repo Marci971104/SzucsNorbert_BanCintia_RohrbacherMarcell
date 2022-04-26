@@ -12,7 +12,7 @@ export class MealsComponent implements OnInit {
   registerForm !: FormGroup;
   meal : any;
   toDisplay = false;
-
+ 
 
   constructor(
 
@@ -26,13 +26,27 @@ export class MealsComponent implements OnInit {
     
     this.getMeals();
 
-      this.registerForm = new FormGroup({
-        name: new FormControl('', [Validators.required, Validators.pattern('[a-zéáíűőúöüóA-ZÉÁÍSŰŐÚÖÜÓ0-9]+'), Validators.minLength(4), Validators.maxLength(50)]),
-        calorievalue: new FormControl('', [Validators.required, Validators.email,  Validators.maxLength(255)]),
-        fat: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
-        protein: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
-        carbohydrate: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
-        salt: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+      this.registerForm = this.formBuilder.group({
+
+        name:[''],
+        calorievalue:[''],
+        fat:[''],
+        protein:[''],
+        carbohydrate:[''],
+        salt:['']
+
+
+
+
+
+
+
+        // name: new FormControl('', [Validators.required, Validators.pattern('[a-zéáíűőúöüóA-ZÉÁÍSŰŐÚÖÜÓ0-9]+'), Validators.minLength(4), Validators.maxLength(50)]),
+        // calorievalue: new FormControl('', [Validators.required, Validators.email,  Validators.maxLength(255)]),
+        // fat: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+        // protein: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+        // carbohydrate: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+        // salt: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
 
 
 

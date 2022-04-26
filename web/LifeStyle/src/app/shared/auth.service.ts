@@ -7,71 +7,77 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   host = 'http://localhost:8000/api/';
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient,private router: Router) { }
 
-  login(email: string, pass: string) {
-    console.log(email);
-    console.log(pass);
-
-    let authData = {
-      email: email,
-      password: pass,
-    };
-    let data = JSON.stringify(authData);
-
-    let headerObj = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
-    let header = {
-      headers: headerObj,
-    };
-
-    let endpoint = 'login';
-    let url = this.host + endpoint;
-    return this.http.post<any>(url, data, header);
+login(name: string, password: string) {
+    
+  let authData = {
+    email: name,
+    password: password
   }
-  isLoggedIn() {
-    if (localStorage.getItem('token') == null) {
-      return false;
-    }
-    let data: any = localStorage.getItem('token');
-    let currentUser = JSON.parse(data);
-    let token = currentUser.token;
-    return token;
-  }
-  logout() {
-    if (localStorage.getItem('token') == null) {
-      return;
-    }
-    let data: any = localStorage.getItem('token');
-    localStorage.removeItem('token');
-    let currentUser = JSON.parse(data);
-    let token = currentUser.token;
+  let data = JSON.stringify(authData);
 
-    let headerObj = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token,
-    });
-    let httpOption = {
-      headers: headerObj,
-    };
-    let endpoint = 'logout';
-    let url = this.host + endpoint;
+  let headerObj = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
 
-    return this.http.post<any>(url, '', httpOption).subscribe((res) => {
-      console.log(res);
-      this.router.navigate(['login']);
-    });
+  let header = {
+    headers: headerObj
   }
 
-  register(email: string, name: string, password: string, confirm_password: string) {
+  let endpoint = 'login';
+  let url = this.host + endpoint;
+  return this.http.post<any>(url, data, header);
+}
+isLoggedIn(){
+  if(localStorage.getItem('currentUser') === null){
+    return false;
+  }
+  let data:any = localStorage.getItem('currentUser');
+  let currentUser = JSON.parse(data);
+  let token = currentUser.token;
+  return token;
+}
+
+
+
+
+logout(){
+  if(localStorage.getItem('currentUser') === null){
+    return;
+  }
+  let data:any = localStorage.getItem('currentUser');
+  localStorage.removeItem('currentUser');
+  let currentUser = JSON.parse(data);
+  let token = currentUser.token;
+
+  let headerObj = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + token
+  });
+  let httpOption = {
+    headers: headerObj
+  };
+  let endpoint = 'logout';
+  let url = this.host + endpoint;
+
+  return this.http.post<any>(url, '', httpOption)
+  .subscribe(res => {
+    console.log(res);
+    this.router.navigate(['']);
+  })
+}
+
+
+
+  register(email: string, name: string, password: string, confirm_password: string, data_id:number) {
 
     let example={
       name:name,
       email:email,
       password:password,
-      confirm_password:confirm_password
+      confirm_password:confirm_password,
+      data_id:data_id
      
     };
     let data = JSON.stringify(example);

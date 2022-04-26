@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
       if (res.token) {
         localStorage.setItem(
           'currentUser',
-          JSON.stringify({ token: res.token, email: res.email })
-        );
-      //  this.router.navigate(['meals']);
-      } else {
-        this.router.navigate(['home']);
+          JSON.stringify({ token: res.token, name: res.name })
+          );
+        } else {
+          
+          this.router.navigate(['home']);
 
       }
     });

@@ -26,6 +26,11 @@
           <input type="password" class="form-control" id="exampleInputPassword2" formControlName="confirm_password">
           <span *ngIf="registerForm.controls['confirm_password'].invalid && registerForm.controls['confirm_password'].touched">A jelszó kötelező, legalább 5 karakter</span>
         </div>
+        <div class="mb-3">
+          <label for="data_id" class="form-label">Név</label>
+          <input type="text" class="form-control" id="data_id" formControlName="data_id">
+         
+        </div>
         
         <button id="btn" type="submit" class="btn btn-outline-dark mx-auto" [disabled]="clicked" [disabled]="!registerForm.valid">Regisztráció</button>
       </form>
