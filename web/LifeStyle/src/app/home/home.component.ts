@@ -10,18 +10,29 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class HomeComponent implements OnInit {
 
+
   
+  
+  constructor(
 
+    private auth: AuthService
+
+  ) {
+
+
+   }
  
-
-  constructor() { }
-
+  
  
   ngOnInit(): void {
 
-
-  
+    
   }
+ 
+    logout(){
+      this.auth.logout();
+    }
+    }
   
 
-}
+

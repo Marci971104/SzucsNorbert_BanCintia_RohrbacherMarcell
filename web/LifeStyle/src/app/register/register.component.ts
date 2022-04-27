@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email,  Validators.maxLength(255)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
       confirm_password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-      data_id:new FormControl('',[Validators.required, Validators.maxLength(1)])
+      // data_id:new FormControl('',[Validators.required, Validators.maxLength(1)])
      
     });
   }
@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
     let email = this.registerForm.value.email;
     let password = this.registerForm.value.password;
     let confirm_password = this.registerForm.value.confirm_password;
-    let data_id = this.registerForm.value.data_id;
+    let data_id = 3;
     
 
     if(password != confirm_password){

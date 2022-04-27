@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { BmiComponent } from './bmi/bmi.component';
 import { AboutComponent } from './about/about.component';
+import { DrinkComponent } from './drink/drink.component';
 
 
 
@@ -22,6 +23,7 @@ import { AboutComponent } from './about/about.component';
     HomeComponent,
     BmiComponent,
     AboutComponent,
+    DrinkComponent,
 
 
 

@@ -70,7 +70,7 @@ logout(){
 
 
 
-  register(email: string, name: string, password: string, confirm_password: string, data_id:number) {
+  register( name: string,email: string, password: string, confirm_password: string, data_id:number) {
 
     let example={
       name:name,

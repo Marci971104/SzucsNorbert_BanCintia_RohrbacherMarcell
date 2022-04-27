@@ -1,0 +1,21 @@
+.Main{
+
+    background-color: #EEE5DB;;
+    padding: 15px;
+    text-align: center;
+    font-size: xx-large;
+}
+.h1{
+    font-size: larger;
+}
+#glass{
+    color: blue;
+    margin-bottom: 15px;
+    font-size: 1px;
+    
+}
+#btns{
+    background-color: #DDCBB9;
+    margin-bottom: 5px;
+    margin-top: 5px;
+} 

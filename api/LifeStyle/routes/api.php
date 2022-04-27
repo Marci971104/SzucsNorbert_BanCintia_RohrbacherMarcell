@@ -12,6 +12,8 @@ Route::post("/login",[AuthController::class,"signin"]);
 Route::post("/logout",[AuthController::class,"logout"]);
 Route::post("/store-meal",[MealController::class,"store"]);
 Route::get("/show-all-meal",[MealController::class,"showAll"]);
+Route::put("/waterintake/{id}",[DataController::class,"increaseWater"]);
+
 
 Route::group( ["middleware" => ["auth:sanctum"]], function(){
     Route::get("/show-meal/{id}",[MealController::class,"show"]);
@@ -27,8 +29,7 @@ Route::group( ["middleware" => ["auth:sanctum"]], function(){
 
     Route::get("/show-user/{id}",[UserController::class,"show"]);
     Route::get("/show-all-user",[UserController::class,"showAll"]);
-    Route::get( "/search-user/{name}", [UserController::class, "search" ]);
+    Route::get( "/search-user/{id}", [UserController::class, "search" ]);
     Route::put("/update-user/{id}",[UserController::class,"update"]);
     Route::delete("/delete-user/{id}",[UserController::class,"destroy"]);
-    Route::put("/waterintake/{id}",[DataController::class,"increaseWater"]);
 });
